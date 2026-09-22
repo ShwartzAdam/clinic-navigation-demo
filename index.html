@@ -257,8 +257,10 @@
     font-size:14px;
     color:var(--ink-soft);
     display:flex;
+    align-items:flex-start;
     gap:8px;
   }
+  .transit-note svg{flex:0 0 auto;margin-top:1px;}
 
   .flow-cta{
     text-align:center;
@@ -511,7 +513,10 @@
 
   <div class="lang-switch">
     <button type="button" id="lang-btn" class="lang-btn" aria-haspopup="true" aria-expanded="false">
-      <span aria-hidden="true">🌐</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
+        <path d="M3 12h18M12 3c2.5 2.5 3.8 5.7 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.7-3.8-9S9.5 5.5 12 3Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+      </svg>
       <span id="lang-btn-label">עברית</span>
     </button>
     <div class="lang-menu" id="lang-menu" hidden role="menu">
@@ -602,7 +607,13 @@
         </div>
 
         <div class="transit-note">
-          <span aria-hidden="true">🚌</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <rect x="4" y="3" width="16" height="13" rx="3" stroke="var(--accent)" stroke-width="2"/>
+            <path d="M4 11h16" stroke="var(--accent)" stroke-width="2"/>
+            <path d="M7 19v1.5M17 19v1.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="8" cy="13.5" r="1.1" fill="var(--accent)"/>
+            <circle cx="16" cy="13.5" r="1.1" fill="var(--accent)"/>
+          </svg>
           <span data-i18n="transitNote">מגיעים בתחבורה ציבורית? קווי אוטובוס רבים עוצרים במרחק הליכה קצרה מהמרפאה.</span>
         </div>
       </div>
@@ -615,13 +626,13 @@
     <h2 data-i18n="routeH2">מאיפה אתם מגיעים?</h2>
     <p class="section-sub" data-i18n="routeSub">בחרו נקודת התחלה, ונראה לכם את הנתיב המדויק מהיכן שאתם עומדים.</p>
     <div class="route-picker" role="group" aria-label="בחירת כניסה" data-i18n-aria="routeGroupAria">
-      <button type="button" id="route-b" class="route-btn is-active" data-route="b">
+      <button type="button" id="route-b" class="route-btn is-active" data-route="b" aria-pressed="true">
         <span class="route-btn-tag">B</span> <span data-i18n="routeBLabel">ליד הסופרמרקט</span>
       </button>
-      <button type="button" id="route-a" class="route-btn" data-route="a">
+      <button type="button" id="route-a" class="route-btn" data-route="a" aria-pressed="false">
         <span class="route-btn-tag">A</span> <span data-i18n="routeALabel">מהרחוב הראשי</span>
       </button>
-      <button type="button" id="route-c" class="route-btn" data-route="c">
+      <button type="button" id="route-c" class="route-btn" data-route="c" aria-pressed="false">
         <span class="route-btn-tag">C</span> <span data-i18n="routeCLabel">מהקניון</span>
       </button>
     </div>
@@ -634,7 +645,7 @@
 
       <div class="step" id="entrance-step">
         <div class="step-marker"><div class="step-num">1</div><div class="step-rule"></div></div>
-        <div class="step-photo-wrap"><img class="step-photo" id="entrance-photo" src="photos/entrance-a.svg" alt="כניסה A מהרחוב הראשי" loading="lazy"></div>
+        <div class="step-photo-wrap"><img class="step-photo" tabindex="0" role="button" id="entrance-photo" src="photos/entrance-a.svg" alt="כניסה A מהרחוב הראשי" loading="lazy"></div>
         <div class="step-body">
           <p class="step-title" id="entrance-title">הגיעו לכניסה A</p>
           <p class="step-desc" id="entrance-desc">מהרחוב הראשי — הכניסה הראשית, מסומנת בגדול "A".</p>
@@ -643,7 +654,7 @@
 
       <div class="step" id="step-mall-plaza" hidden>
         <div class="step-marker"><div class="step-num">2</div><div class="step-rule"></div></div>
-        <div class="step-photo-wrap"><img class="step-photo" src="photos/mall-plaza.svg" alt="חזית הבניין, כפי שנראית מהרחבה שמול יציאת הקניון" loading="lazy" data-i18n-alt="mallPlazaAlt"></div>
+        <div class="step-photo-wrap"><img class="step-photo" tabindex="0" role="button" src="photos/mall-plaza.svg" alt="חזית הבניין, כפי שנראית מהרחבה שמול יציאת הקניון" loading="lazy" data-i18n-alt="mallPlazaAlt"></div>
         <div class="step-body">
           <p class="step-title" data-i18n="mallPlazaTitle">תגיעו לרחבה מול הבניין</p>
           <p class="step-desc" data-i18n="mallPlazaDesc">יציאת הקניון מובילה לרחבה החיצונית, מול חזית הבניין.</p>
@@ -652,7 +663,7 @@
 
       <div class="step" id="step-lobby">
         <div class="step-marker"><div class="step-num">2</div><div class="step-rule"></div></div>
-        <div class="step-photo-wrap"><img class="step-photo" src="photos/lobby.svg" alt="לובי הכניסה עם שילוט כניסה A וכניסה B" loading="lazy" data-i18n-alt="lobbyAlt"></div>
+        <div class="step-photo-wrap"><img class="step-photo" tabindex="0" role="button" src="photos/lobby.svg" alt="לובי הכניסה עם שילוט כניסה A וכניסה B" loading="lazy" data-i18n-alt="lobbyAlt"></div>
         <div class="step-body">
           <p class="step-title" data-i18n="lobbyTitle">בלובי, פנו לכיוון המעליות</p>
           <p class="step-desc" data-i18n="lobbyDesc">מכל כניסה — שילוט כחול יכוון אתכם ללובי המעליות המשותף.</p>
@@ -661,7 +672,7 @@
 
       <div class="step" id="step-lobby-mall" hidden>
         <div class="step-marker"><div class="step-num">3</div><div class="step-rule"></div></div>
-        <div class="step-photo-wrap"><img class="step-photo" src="photos/lobby-mall.svg" alt="מבט רחב על הלובי עם שילוט כניסה A וכניסה B" loading="lazy" data-i18n-alt="lobbyMallAlt"></div>
+        <div class="step-photo-wrap"><img class="step-photo" tabindex="0" role="button" src="photos/lobby-mall.svg" alt="מבט רחב על הלובי עם שילוט כניסה A וכניסה B" loading="lazy" data-i18n-alt="lobbyMallAlt"></div>
         <div class="step-body">
           <p class="step-title" data-i18n="lobbyTitle">בלובי, פנו לכיוון המעליות</p>
           <p class="step-desc" data-i18n="lobbyDesc">מכל כניסה — שילוט כחול יכוון אתכם ללובי המעליות המשותף.</p>
@@ -670,7 +681,7 @@
 
       <div class="step" id="step-elevator">
         <div class="step-marker"><div class="step-num">3</div><div class="step-rule"></div></div>
-        <div class="step-photo-wrap"><img class="step-photo" src="photos/elevator.svg" alt="לובי מעליות עם לוח קומות" loading="lazy" data-i18n-alt="elevatorAlt"></div>
+        <div class="step-photo-wrap"><img class="step-photo" tabindex="0" role="button" src="photos/elevator.svg" alt="לובי מעליות עם לוח קומות" loading="lazy" data-i18n-alt="elevatorAlt"></div>
         <div class="step-body">
           <p class="step-title" data-i18n="elevatorTitle">עלו במעלית לקומה 5</p>
           <p class="step-desc" data-i18n="elevatorDesc">לוח הדיירים שליד המעלית מציג את המרפאה בקומה 5, יחידה 9.</p>
@@ -679,7 +690,7 @@
 
       <div class="step" id="step-corridor">
         <div class="step-marker"><div class="step-num">4</div><div class="step-rule"></div></div>
-        <div class="step-photo-wrap"><img class="step-photo" src="photos/corridor.svg" alt="מסדרון קומה 5 עם ספרת 5 ירוקה גדולה" loading="lazy" data-i18n-alt="corridorAlt"></div>
+        <div class="step-photo-wrap"><img class="step-photo" tabindex="0" role="button" src="photos/corridor.svg" alt="מסדרון קומה 5 עם ספרת 5 ירוקה גדולה" loading="lazy" data-i18n-alt="corridorAlt"></div>
         <div class="step-body">
           <p class="step-title" data-i18n="corridorTitle">בצאתכם מהמעלית, המשיכו במסדרון עד הסוף</p>
           <p class="step-desc" data-i18n="corridorDesc">הספרה הירוקה הגדולה "5" על הקיר מאשרת שהגעתם לקומה הנכונה.</p>
@@ -688,7 +699,7 @@
 
       <div class="step">
         <div class="step-marker"><div class="step-num">5</div><div class="step-rule"></div></div>
-        <div class="step-photo-wrap"><img class="step-photo" src="photos/door.svg" alt="דלת המרפאה עם שלט ומספר 9" loading="lazy" data-i18n-alt="doorAlt"></div>
+        <div class="step-photo-wrap"><img class="step-photo" tabindex="0" role="button" src="photos/door.svg" alt="דלת המרפאה עם שלט ומספר 9" loading="lazy" data-i18n-alt="doorAlt"></div>
         <div class="step-body">
           <p class="step-title" data-i18n="doorTitle">דלת המרפאה — יחידה 9</p>
           <p class="step-desc" data-i18n="doorDesc">השלט השחור עם הלוגו נמצא ליד דלת הזכוכית. אין צורך לצלצל.</p>
@@ -697,7 +708,7 @@
 
       <div class="step">
         <div class="step-marker"><div class="step-num">6</div></div>
-        <div class="step-photo-wrap"><img class="step-photo" src="photos/reception.svg" alt="דלפק הקבלה של המרפאה" loading="lazy" data-i18n-alt="receptionAlt"></div>
+        <div class="step-photo-wrap"><img class="step-photo" tabindex="0" role="button" src="photos/reception.svg" alt="דלפק הקבלה של המרפאה" loading="lazy" data-i18n-alt="receptionAlt"></div>
         <div class="step-body">
           <p class="step-title" data-i18n="receptionTitle">הגעתם!</p>
           <p class="step-desc" data-i18n="receptionDesc">התייצבו בקבלה, ואנחנו נדאג להמשך.</p>
@@ -1036,7 +1047,11 @@
       if (!ROUTES_META[btn.dataset.route]) return;
       currentRouteKey = btn.dataset.route;
       applyRoute(getRoute(currentRouteKey));
-      routeButtons.forEach(b => b.classList.toggle('is-active', b === btn));
+      routeButtons.forEach(b => {
+        const active = b === btn;
+        b.classList.toggle('is-active', active);
+        b.setAttribute('aria-pressed', String(active));
+      });
     });
   });
 
@@ -1142,6 +1157,12 @@
 
   document.querySelectorAll('.step-photo').forEach(img => {
     img.addEventListener('click', () => openLightbox(img.src, img.alt));
+    img.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openLightbox(img.src, img.alt);
+      }
+    });
   });
   lightboxClose.addEventListener('click', closeLightbox);
   lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
