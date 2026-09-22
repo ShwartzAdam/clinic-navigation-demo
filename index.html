@@ -14,21 +14,21 @@
 <meta name="twitter:description" content="דוגמה חיה: מדריך קצר מהבית עד לדלת המרפאה, כולל ניווט וההליכה בתוך הבניין צעד־צעד.">
 <meta name="twitter:image" content="https://shwartzadam.github.io/clinic-navigation-demo/photos/logo-placeholder.svg">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700&family=Heebo:wght@400;500;600;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap');
 
   :root{
-    --bg:#F8F6F1;
+    --bg:#F5FAF8;
     --surface:#FFFFFF;
-    --surface-alt:#DDE3DC;
-    --ink:#252421;
-    --ink-soft:#6E6A63;
-    --accent:#596457;
-    --accent-soft:rgba(89,100,87,0.12);
-    --accent-2:#3F473C;
-    --accent-2-soft:rgba(63,71,60,0.14);
-    --brand:#B5A79A;
-    --line:rgba(37,36,33,0.10);
-    --shadow: 0 1px 2px rgba(37,36,33,0.06), 0 8px 28px -12px rgba(37,36,33,0.18);
+    --surface-alt:#E4F1E6;
+    --ink:#1E2A26;
+    --ink-soft:#5E6D68;
+    --accent:#2E9E52;
+    --accent-soft:rgba(46,158,82,0.12);
+    --accent-2:#2678BF;
+    --accent-2-soft:rgba(38,120,191,0.12);
+    --brand:#2678BF;
+    --line:rgba(30,42,38,0.10);
+    --shadow: 0 1px 2px rgba(30,42,38,0.06), 0 8px 28px -12px rgba(30,42,38,0.18);
   }
 
   *{box-sizing:border-box;}
@@ -102,6 +102,12 @@
   header.page{
     text-align:center;
   }
+  .hero-illustration{
+    display:block;
+    width:150px;
+    height:150px;
+    margin:8px auto 4px;
+  }
   .header-brand{
     display:flex;
     align-items:center;
@@ -132,7 +138,7 @@
     text-transform:uppercase;
   }
   h1{
-    font-family:'Frank Ruhl Libre', 'Times New Roman', serif;
+    font-family:'Heebo', 'Segoe UI', Arial, sans-serif;
     font-weight:700;
     font-size:clamp(28px,6vw,38px);
     line-height:1.2;
@@ -529,6 +535,7 @@
   </div>
 
   <header class="page">
+    <img class="hero-illustration" src="photos/clinic-isometric.svg" alt="" aria-hidden="true" width="180" height="180">
     <div class="header-brand">
       <img class="doctor-photo" src="photos/avatar-placeholder.svg" alt="Demo Clinic" data-i18n-alt="doctorAlt">
       <img class="logo-mark" src="photos/logo-placeholder.svg" alt="Demo Clinic" data-i18n-alt="doctorAlt">
