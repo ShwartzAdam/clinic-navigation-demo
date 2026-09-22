@@ -1,0 +1,1170 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>איך מגיעים אלינו — Demo</title>
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:title" content="Demo Clinic — איך מגיעים אלינו">
+<meta property="og:description" content="דוגמה חיה: מדריך קצר מהבית עד לדלת המרפאה, כולל ניווט וההליכה בתוך הבניין צעד־צעד.">
+<meta property="og:image" content="https://shwartzadam.github.io/clinic-navigation-demo/photos/logo-placeholder.svg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://shwartzadam.github.io/clinic-navigation-demo/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Demo Clinic — איך מגיעים אלינו">
+<meta name="twitter:description" content="דוגמה חיה: מדריך קצר מהבית עד לדלת המרפאה, כולל ניווט וההליכה בתוך הבניין צעד־צעד.">
+<meta name="twitter:image" content="https://shwartzadam.github.io/clinic-navigation-demo/photos/logo-placeholder.svg">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700&family=Heebo:wght@400;500;600;700&display=swap');
+
+  :root{
+    --bg:#F8F6F1;
+    --surface:#FFFFFF;
+    --surface-alt:#DDE3DC;
+    --ink:#252421;
+    --ink-soft:#6E6A63;
+    --accent:#596457;
+    --accent-soft:rgba(89,100,87,0.12);
+    --accent-2:#3F473C;
+    --accent-2-soft:rgba(63,71,60,0.14);
+    --brand:#B5A79A;
+    --line:rgba(37,36,33,0.10);
+    --shadow: 0 1px 2px rgba(37,36,33,0.06), 0 8px 28px -12px rgba(37,36,33,0.18);
+  }
+
+  *{box-sizing:border-box;}
+  html{color-scheme:light;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Heebo', 'Segoe UI', Arial, sans-serif;
+    direction:rtl;
+    padding:0 20px;
+    padding-block:0 48px;
+  }
+  html[dir="ltr"] body{direction:ltr;}
+  .wrap{max-width:640px;margin:0 auto;}
+
+  .demo-banner{
+    max-width:640px;
+    margin:14px auto 0;
+    padding:10px 16px;
+    border-radius:12px;
+    background:var(--accent-2);
+    color:var(--bg);
+    font-size:13px;
+    font-weight:600;
+    text-align:center;
+  }
+  .demo-banner a{color:var(--bg);text-decoration:underline;}
+
+  .lang-switch{
+    position:relative;
+    display:flex;
+    justify-content:flex-end;
+    padding-top:16px;
+    margin-bottom:-4px;
+  }
+  .lang-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding:8px 14px;
+    border-radius:999px;
+    background:var(--surface);
+    border:1px solid var(--line);
+    color:var(--ink);
+    font-family:inherit;
+    font-size:14px;
+    font-weight:600;
+    cursor:pointer;
+  }
+  .lang-btn:hover{border-color:var(--accent);}
+  .lang-menu{
+    position:absolute;
+    inset-block-start:calc(100% + 6px);
+    inset-inline-end:0;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:12px;
+    box-shadow:var(--shadow);
+    padding:6px;
+    display:flex;
+    flex-direction:column;
+    min-width:140px;
+    z-index:10;
+  }
+  .lang-menu[hidden]{display:none;}
+  .lang-menu button{
+    display:block;
+    width:100%;
+    text-align:start;
+    padding:9px 12px;
+    border:none;
+    background:none;
+    border-radius:8px;
+    font-family:inherit;
+    font-size:14px;
+    color:var(--ink);
+    cursor:pointer;
+  }
+  .lang-menu button:hover{background:var(--accent-soft);}
+  .lang-menu button.is-active{color:var(--accent);font-weight:700;}
+
+  header.page{
+    text-align:center;
+  }
+  .header-brand{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .doctor-photo{
+    width:72px;
+    height:72px;
+    border-radius:50%;
+    object-fit:cover;
+    object-position:50% 25%;
+    border:2px solid var(--brand);
+    flex:0 0 auto;
+  }
+  .logo-mark{
+    display:block;
+    width:min(300px, 60%);
+    height:auto;
+    margin:0;
+  }
+  .eyebrow{
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:.04em;
+    color:var(--accent);
+    text-transform:uppercase;
+  }
+  h1{
+    font-family:'Frank Ruhl Libre', 'Times New Roman', serif;
+    font-weight:700;
+    font-size:clamp(28px,6vw,38px);
+    line-height:1.2;
+    margin:10px 0 10px;
+    text-wrap:balance;
+  }
+  .lede{
+    color:var(--ink-soft);
+    font-size:16px;
+    line-height:1.6;
+    max-width:46ch;
+    margin:0 auto;
+  }
+
+  section{margin-block:10px;}
+  .card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:18px;
+    box-shadow:var(--shadow);
+    overflow:hidden;
+  }
+  .card-pad{padding:22px;}
+
+  h2{
+    font-family:'Heebo', sans-serif;
+    font-size:21px;
+    font-weight:700;
+  }
+  .section-sub{
+    color:var(--ink-soft);
+    font-size:14px;
+    margin:0 0 16px;
+  }
+
+  .addr-row{
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+  }
+  .addr-icon{
+    flex:0 0 auto;
+    width:36px;height:36px;
+    border-radius:10px;
+    background:var(--accent-soft);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .addr-text{font-size:16px;line-height:1.55;}
+  .addr-text b{font-weight:700;}
+  .muted{color:var(--ink-soft);font-size:14px;}
+
+  .parking-section{
+    margin-top:14px;
+    padding-top:14px;
+    border-top:1px dashed var(--line);
+  }
+  .parking-row{margin:0;}
+  .parking-item{
+    margin-top:12px;
+    padding-inline-start:48px;
+  }
+  .parking-item-title{font-size:14.5px;font-weight:600;}
+  .parking-item-desc{font-size:13.5px;color:var(--ink-soft);line-height:1.5;margin-top:2px;}
+  .parking-links{
+    margin-top:4px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    font-size:13px;
+  }
+  .parking-links a{
+    color:var(--accent-2);
+    font-weight:600;
+    text-decoration:none;
+  }
+  .parking-links a:hover{text-decoration:underline;}
+  .parking-links span{color:var(--ink-soft);}
+
+  .nav-buttons{
+    display:flex;
+    gap:10px;
+    margin-top:16px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    flex:1 1 160px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding:13px 16px;
+    border-radius:12px;
+    font-weight:600;
+    font-size:15px;
+    text-decoration:none;
+    border:1px solid transparent;
+    white-space:nowrap;
+    transition:transform .15s ease, filter .15s ease;
+  }
+  .btn:hover{filter:brightness(1.05);}
+  .btn:active{transform:translateY(1px);}
+  .btn-primary{
+    background:var(--accent);
+    color:var(--bg);
+  }
+  .btn-secondary{
+    background:var(--surface);
+    color:var(--ink);
+    border-color:var(--line);
+  }
+  .btn-sm{
+    flex:0 0 auto;
+    padding:13px 20px;
+    font-size:15px;
+    font-weight:700;
+    border-radius:999px;
+    gap:8px;
+  }
+  .transit-note{
+    margin-top:14px;
+    padding-top:14px;
+    border-top:1px dashed var(--line);
+    font-size:14px;
+    color:var(--ink-soft);
+    display:flex;
+    gap:8px;
+  }
+
+  .flow-cta{
+    text-align:center;
+    padding-block:8px;
+  }
+  .flow-cta h2{margin:0 0 4px;}
+  .flow-btn{
+    margin-top:18px;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:18px 32px;
+    border-radius:999px;
+    background:var(--accent);
+    color:var(--bg);
+    border:none;
+    font-family:inherit;
+    font-weight:700;
+    font-size:17px;
+    cursor:pointer;
+    box-shadow:var(--shadow);
+    transition:transform .15s ease, filter .15s ease;
+  }
+  .flow-btn:hover{filter:brightness(1.08);}
+  .flow-btn:active{transform:translateY(1px);}
+  .flow-btn.is-open svg{transform:rotate(180deg);}
+  .flow-btn svg{transition:transform .2s ease;}
+  .flow-cta-sub{
+    margin:0;
+    font-size:13px;
+    color:var(--ink-soft);
+  }
+  #flow[hidden]{display:none;}
+
+  .route-picker{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .route-btn{
+    flex:1 1 160px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding:13px 14px;
+    border-radius:12px;
+    font-family:inherit;
+    font-weight:600;
+    font-size:14px;
+    color:var(--ink);
+    background:var(--surface);
+    border:1px solid var(--line);
+    cursor:pointer;
+    transition:background .15s ease, border-color .15s ease, transform .15s ease;
+  }
+  .route-btn:hover{border-color:var(--accent);}
+  .route-btn:active{transform:translateY(1px);}
+  .route-btn.is-active{
+    background:var(--accent-soft);
+    border-color:var(--accent);
+    color:var(--accent);
+  }
+  .route-btn-tag{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:20px;height:20px;
+    border-radius:50%;
+    background:var(--surface-alt);
+    font-size:12px;
+    font-weight:700;
+  }
+  .route-btn.is-active .route-btn-tag{
+    background:var(--accent);
+    color:var(--bg);
+  }
+
+  .steps{
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+  }
+  .step[hidden]{display:none;}
+  .step{
+    display:flex;
+    gap:16px;
+    padding:18px 22px;
+    border-bottom:1px solid var(--line);
+    background:var(--surface);
+  }
+  .step:last-child{border-bottom:0;}
+  .step:first-child{border-top-right-radius:18px;border-top-left-radius:18px;}
+  .step:last-child{border-bottom-right-radius:18px;border-bottom-left-radius:18px;}
+  .step-marker{
+    flex:0 0 auto;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:6px;
+  }
+  .step-num{
+    width:30px;height:30px;
+    border-radius:50%;
+    background:var(--accent);
+    color:var(--bg);
+    font-weight:700;
+    font-size:14px;
+    display:flex;align-items:center;justify-content:center;
+    font-variant-numeric:tabular-nums;
+  }
+  .step-rule{
+    flex:1;
+    width:2px;
+    background:var(--line);
+    min-height:16px;
+  }
+  .step:last-child .step-rule{display:none;}
+  .step-photo-wrap{
+    position:relative;
+    flex:0 0 auto;
+    width:116px;height:88px;
+  }
+  .step-photo{
+    width:100%;height:100%;
+    display:block;
+    border-radius:12px;
+    object-fit:cover;
+    border:1px solid var(--line);
+    cursor:zoom-in;
+    transition:opacity .15s ease;
+  }
+  .step-photo:hover{opacity:.85;}
+  .step-photo-wrap::after{
+    content:"";
+    position:absolute;
+    inset-inline-end:6px;
+    inset-block-end:6px;
+    width:30px;height:30px;
+    border-radius:50%;
+    background:rgba(23,19,15,0.78) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23F5EFE3' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E") no-repeat center;
+    background-size:16px 16px;
+    border:1px solid rgba(245,239,227,0.35);
+    pointer-events:none;
+  }
+  .step-body{flex:1;padding-top:2px;}
+  .step-title{font-weight:600;font-size:16px;margin:0 0 3px;}
+  .step-desc{font-size:14px;color:var(--ink-soft);line-height:1.5;margin:0;}
+
+  .lightbox{
+    position:fixed;
+    inset:0;
+    background:rgba(3,3,10,0.92);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:56px 20px 20px;
+    z-index:100;
+  }
+  .lightbox[hidden]{display:none;}
+  .lightbox img{
+    max-width:100%;
+    max-height:100%;
+    border-radius:10px;
+    object-fit:contain;
+  }
+  .lightbox-close{
+    position:fixed;
+    top:16px;
+    inset-inline-end:16px;
+    width:44px;height:44px;
+    border-radius:50%;
+    border:1px solid rgba(245,239,227,0.3);
+    background:rgba(245,239,227,0.08);
+    color:#F5EFE3;
+    font-size:20px;
+    line-height:1;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .lightbox-close:hover{background:rgba(255,255,255,0.18);}
+  @media (prefers-reduced-motion: no-preference){
+    .lightbox{animation:fade .15s ease;}
+    @keyframes fade{from{opacity:0;}to{opacity:1;}}
+  }
+
+  .info-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+  }
+  @media (max-width:480px){
+    .info-grid{grid-template-columns:1fr;}
+    .card-pad{padding:16px;}
+  }
+  .info-tile{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:16px 18px;
+  }
+  .info-label{
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    color:var(--ink-soft);
+    font-weight:600;
+    margin-bottom:6px;
+  }
+  .info-value{font-size:15px;line-height:1.55;font-variant-numeric:tabular-nums;}
+  .phone-link{
+    color:var(--accent-2);
+    font-weight:700;
+    text-decoration:none;
+    font-size:17px;
+  }
+  .phone-link:hover{text-decoration:underline;}
+
+  footer{
+    text-align:center;
+    margin-top:36px;
+    padding-top:20px;
+    border-top:1px solid var(--line);
+    color:var(--ink-soft);
+    font-size:13px;
+    line-height:1.7;
+  }
+
+  @media (prefers-reduced-motion: no-preference){
+    .step{
+      opacity:0;
+      animation:rise .5s ease forwards;
+    }
+    .step:nth-child(1){animation-delay:.02s;}
+    .step:nth-child(2){animation-delay:.07s;}
+    .step:nth-child(3){animation-delay:.12s;}
+    .step:nth-child(4){animation-delay:.17s;}
+    .step:nth-child(5){animation-delay:.22s;}
+    .step:nth-child(6){animation-delay:.27s;}
+    @keyframes rise{
+      from{opacity:0;transform:translateY(8px);}
+      to{opacity:1;transform:translateY(0);}
+    }
+  }
+</style>
+
+<div class="demo-banner">
+  Demo — Clinic Navigation template. <a href="https://github.com/ShwartzAdam/clinic-navigation-demo" target="_blank" rel="noopener">See the code / order one for your clinic</a>
+</div>
+
+<div class="wrap">
+
+  <div class="lang-switch">
+    <button type="button" id="lang-btn" class="lang-btn" aria-haspopup="true" aria-expanded="false">
+      <span aria-hidden="true">🌐</span>
+      <span id="lang-btn-label">עברית</span>
+    </button>
+    <div class="lang-menu" id="lang-menu" hidden role="menu">
+      <button type="button" data-lang="he" role="menuitem">עברית</button>
+      <button type="button" data-lang="en" role="menuitem">English</button>
+      <button type="button" data-lang="ru" role="menuitem">Русский</button>
+      <button type="button" data-lang="ar" role="menuitem">العربية</button>
+    </div>
+  </div>
+
+  <header class="page">
+    <div class="header-brand">
+      <img class="doctor-photo" src="photos/avatar-placeholder.svg" alt="Demo Clinic" data-i18n-alt="doctorAlt">
+      <img class="logo-mark" src="photos/logo-placeholder.svg" alt="Demo Clinic" data-i18n-alt="doctorAlt">
+    </div>
+    <div class="eyebrow" data-i18n="eyebrow">מרפאת דמו</div>
+    <p class="lede" data-i18n="lede">מדריך קצר מהבית עד לדלת המרפאה — כולל ניווט, וההליכה בתוך הבניין צעד־צעד.</p>
+  </header>
+
+  <section class="flow-cta">
+    <h2 data-i18n="flowH2">איך מגיעים אלינו</h2>
+    <p class="flow-cta-sub" data-i18n="flowSub">מדריך צעד־צעד מהכניסה שלכם עד דלת המרפאה</p>
+    <button type="button" id="flow-trigger" class="flow-btn">
+      <span data-i18n="flowBtn">הציגו את המדריך</span>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M12 5v14M12 19l-6-6M12 19l6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </section>
+
+  <section>
+    <div class="card">
+      <div class="card-pad">
+        <div class="addr-row">
+          <div class="addr-icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path d="M12 22s7-7.58 7-13A7 7 0 0 0 5 9c0 5.42 7 13 7 13Z" stroke="var(--accent)" stroke-width="2" stroke-linejoin="round"/>
+              <circle cx="12" cy="9" r="2.4" stroke="var(--accent)" stroke-width="2"/>
+            </svg>
+          </div>
+          <div class="addr-text">
+            <b data-i18n="addrLine">רחוב הדוגמה 1, כניסה ב׳, קומה 5</b><br>
+            <span class="muted" data-i18n="addrCity">עיר לדוגמה</span>
+          </div>
+        </div>
+
+        <div class="nav-buttons">
+          <a class="btn btn-primary" href="https://waze.com/ul?q=%D7%9B%D7%99%D7%9B%D7%A8%20%D7%A8%D7%91%D7%99%D7%9F%20%D7%AA%D7%9C%20%D7%90%D7%91%D7%99%D7%91&navigate=yes" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 11l18-8-8 18-2-8-8-2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+            <span data-i18n="wazeBtn">נווטו עם Waze</span>
+          </a>
+          <a class="btn btn-primary" href="https://www.google.com/maps/dir/?api=1&destination=%D7%9B%D7%99%D7%9B%D7%A8%20%D7%A8%D7%91%D7%99%D7%9F%20%D7%AA%D7%9C%20%D7%90%D7%91%D7%99%D7%91" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 22s7-7.58 7-13A7 7 0 0 0 5 9c0 5.42 7 13 7 13Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="9" r="2.4" stroke="currentColor" stroke-width="2"/></svg>
+            <span data-i18n="gmapsBtn">נווטו עם Google Maps</span>
+          </a>
+        </div>
+
+        <div class="parking-section">
+          <div class="addr-row parking-row">
+            <div class="addr-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <rect x="4" y="4" width="16" height="16" rx="3" stroke="var(--accent)" stroke-width="2"/>
+                <path d="M9.5 16V8h2.6a2.4 2.4 0 0 1 0 4.8H9.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <div class="addr-text"><b data-i18n="parkingHeader">חניה בסביבה</b></div>
+          </div>
+
+          <div class="parking-item">
+            <div class="parking-item-title" data-i18n="parking1Title">חניון קניון העיר</div>
+            <div class="parking-item-desc" data-i18n="parking1Desc">רחוב הדוגמה 2 — חניון מקורה, כ־5 דקות הליכה. האפשרות הכי בטוחה למצוא מקום.</div>
+            <div class="parking-links">
+              <a class="btn btn-secondary btn-sm" href="https://waze.com/ul?q=%D7%9B%D7%99%D7%9B%D7%A8%20%D7%A8%D7%91%D7%99%D7%9F%20%D7%AA%D7%9C%20%D7%90%D7%91%D7%99%D7%91&navigate=yes" target="_blank" rel="noopener">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 11l18-8-8 18-2-8-8-2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+                <span data-i18n="wazeParking">Waze לחניון</span>
+              </a>
+              <a class="btn btn-secondary btn-sm" href="https://www.google.com/maps/dir/?api=1&destination=%D7%9B%D7%99%D7%9B%D7%A8%20%D7%A8%D7%91%D7%99%D7%9F%20%D7%AA%D7%9C%20%D7%90%D7%91%D7%99%D7%91" target="_blank" rel="noopener">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 22s7-7.58 7-13A7 7 0 0 0 5 9c0 5.42 7 13 7 13Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="9" r="2.4" stroke="currentColor" stroke-width="2"/></svg>
+                <span data-i18n="gmapsParking">Google Maps לחניון</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="parking-item">
+            <div class="parking-item-title" data-i18n="parking2Title">חניה ברחוב בתשלום</div>
+            <div class="parking-item-desc" data-i18n="parking2Desc">לאורך הרחוב והרחובות הסמוכים — אזור כחול־לבן, תשלום באפליקציית פנגו או סלופארק.</div>
+          </div>
+        </div>
+
+        <div class="transit-note">
+          <span aria-hidden="true">🚌</span>
+          <span data-i18n="transitNote">מגיעים בתחבורה ציבורית? קווי אוטובוס רבים עוצרים במרחק הליכה קצרה מהמרפאה.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="flow" hidden>
+
+  <section>
+    <h2 data-i18n="routeH2">מאיפה אתם מגיעים?</h2>
+    <p class="section-sub" data-i18n="routeSub">בחרו נקודת התחלה, ונראה לכם את הנתיב המדויק מהיכן שאתם עומדים.</p>
+    <div class="route-picker" role="group" aria-label="בחירת כניסה" data-i18n-aria="routeGroupAria">
+      <button type="button" id="route-b" class="route-btn is-active" data-route="b">
+        <span class="route-btn-tag">B</span> <span data-i18n="routeBLabel">ליד הסופרמרקט</span>
+      </button>
+      <button type="button" id="route-a" class="route-btn" data-route="a">
+        <span class="route-btn-tag">A</span> <span data-i18n="routeALabel">מהרחוב הראשי</span>
+      </button>
+      <button type="button" id="route-c" class="route-btn" data-route="c">
+        <span class="route-btn-tag">C</span> <span data-i18n="routeCLabel">מהקניון</span>
+      </button>
+    </div>
+  </section>
+
+  <section>
+    <h2 data-i18n="yourRouteH2">הנתיב שלכם</h2>
+    <p class="section-sub" id="route-sub">חמישה צעדים מכניסה A עד דלת המרפאה.</p>
+    <div class="card steps">
+
+      <div class="step" id="entrance-step">
+        <div class="step-marker"><div class="step-num">1</div><div class="step-rule"></div></div>
+        <div class="step-photo-wrap"><img class="step-photo" id="entrance-photo" src="photos/entrance-a.svg" alt="כניסה A מהרחוב הראשי" loading="lazy"></div>
+        <div class="step-body">
+          <p class="step-title" id="entrance-title">הגיעו לכניסה A</p>
+          <p class="step-desc" id="entrance-desc">מהרחוב הראשי — הכניסה הראשית, מסומנת בגדול "A".</p>
+        </div>
+      </div>
+
+      <div class="step" id="step-mall-plaza" hidden>
+        <div class="step-marker"><div class="step-num">2</div><div class="step-rule"></div></div>
+        <div class="step-photo-wrap"><img class="step-photo" src="photos/mall-plaza.svg" alt="חזית הבניין, כפי שנראית מהרחבה שמול יציאת הקניון" loading="lazy" data-i18n-alt="mallPlazaAlt"></div>
+        <div class="step-body">
+          <p class="step-title" data-i18n="mallPlazaTitle">תגיעו לרחבה מול הבניין</p>
+          <p class="step-desc" data-i18n="mallPlazaDesc">יציאת הקניון מובילה לרחבה החיצונית, מול חזית הבניין.</p>
+        </div>
+      </div>
+
+      <div class="step" id="step-lobby">
+        <div class="step-marker"><div class="step-num">2</div><div class="step-rule"></div></div>
+        <div class="step-photo-wrap"><img class="step-photo" src="photos/lobby.svg" alt="לובי הכניסה עם שילוט כניסה A וכניסה B" loading="lazy" data-i18n-alt="lobbyAlt"></div>
+        <div class="step-body">
+          <p class="step-title" data-i18n="lobbyTitle">בלובי, פנו לכיוון המעליות</p>
+          <p class="step-desc" data-i18n="lobbyDesc">מכל כניסה — שילוט כחול יכוון אתכם ללובי המעליות המשותף.</p>
+        </div>
+      </div>
+
+      <div class="step" id="step-lobby-mall" hidden>
+        <div class="step-marker"><div class="step-num">3</div><div class="step-rule"></div></div>
+        <div class="step-photo-wrap"><img class="step-photo" src="photos/lobby-mall.svg" alt="מבט רחב על הלובי עם שילוט כניסה A וכניסה B" loading="lazy" data-i18n-alt="lobbyMallAlt"></div>
+        <div class="step-body">
+          <p class="step-title" data-i18n="lobbyTitle">בלובי, פנו לכיוון המעליות</p>
+          <p class="step-desc" data-i18n="lobbyDesc">מכל כניסה — שילוט כחול יכוון אתכם ללובי המעליות המשותף.</p>
+        </div>
+      </div>
+
+      <div class="step" id="step-elevator">
+        <div class="step-marker"><div class="step-num">3</div><div class="step-rule"></div></div>
+        <div class="step-photo-wrap"><img class="step-photo" src="photos/elevator.svg" alt="לובי מעליות עם לוח קומות" loading="lazy" data-i18n-alt="elevatorAlt"></div>
+        <div class="step-body">
+          <p class="step-title" data-i18n="elevatorTitle">עלו במעלית לקומה 5</p>
+          <p class="step-desc" data-i18n="elevatorDesc">לוח הדיירים שליד המעלית מציג את המרפאה בקומה 5, יחידה 9.</p>
+        </div>
+      </div>
+
+      <div class="step" id="step-corridor">
+        <div class="step-marker"><div class="step-num">4</div><div class="step-rule"></div></div>
+        <div class="step-photo-wrap"><img class="step-photo" src="photos/corridor.svg" alt="מסדרון קומה 5 עם ספרת 5 ירוקה גדולה" loading="lazy" data-i18n-alt="corridorAlt"></div>
+        <div class="step-body">
+          <p class="step-title" data-i18n="corridorTitle">בצאתכם מהמעלית, המשיכו במסדרון עד הסוף</p>
+          <p class="step-desc" data-i18n="corridorDesc">הספרה הירוקה הגדולה "5" על הקיר מאשרת שהגעתם לקומה הנכונה.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-marker"><div class="step-num">5</div><div class="step-rule"></div></div>
+        <div class="step-photo-wrap"><img class="step-photo" src="photos/door.svg" alt="דלת המרפאה עם שלט ומספר 9" loading="lazy" data-i18n-alt="doorAlt"></div>
+        <div class="step-body">
+          <p class="step-title" data-i18n="doorTitle">דלת המרפאה — יחידה 9</p>
+          <p class="step-desc" data-i18n="doorDesc">השלט השחור עם הלוגו נמצא ליד דלת הזכוכית. אין צורך לצלצל.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-marker"><div class="step-num">6</div></div>
+        <div class="step-photo-wrap"><img class="step-photo" src="photos/reception.svg" alt="דלפק הקבלה של המרפאה" loading="lazy" data-i18n-alt="receptionAlt"></div>
+        <div class="step-body">
+          <p class="step-title" data-i18n="receptionTitle">הגעתם!</p>
+          <p class="step-desc" data-i18n="receptionDesc">התייצבו בקבלה, ואנחנו נדאג להמשך.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  </div>
+
+  <section>
+    <div class="info-tile" style="text-align:center;">
+      <div class="info-label" data-i18n="phoneLabel">לא מוצאים אותנו?</div>
+      <div class="info-value"><a class="phone-link" href="tel:0500000000">050-000-0000</a><br><span data-i18n="phoneNote">נענה בשמחה ונדריך אתכם</span></div>
+    </div>
+  </section>
+
+  <footer data-i18n="footer">
+    Demo Clinic — Clinic Navigation Template
+  </footer>
+
+</div>
+
+<div class="lightbox" id="lightbox" hidden>
+  <button type="button" class="lightbox-close" id="lightbox-close" aria-label="סגירה" data-i18n-aria="lightboxClose">✕</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script type="module">
+  import { animate } from "https://cdn.jsdelivr.net/npm/motion@11.13.5/mini/+esm";
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const ROUTES_META = {
+    a: { photo: 'photos/entrance-a.svg', skip: ['step-mall-plaza', 'step-lobby-mall'] },
+    b: { photo: 'photos/entrance-b.svg', skip: ['step-mall-plaza', 'step-lobby', 'step-lobby-mall', 'step-corridor'] },
+    c: { photo: 'photos/entrance-c.svg', skip: ['step-lobby'] }
+  };
+
+  const LANG_NAMES = { he: 'עברית', en: 'English', ru: 'Русский', ar: 'العربية' };
+  const LANG_DIR = { he: 'rtl', en: 'ltr', ru: 'ltr', ar: 'rtl' };
+
+  const I18N = {
+    he: {
+      t: {
+        pageTitle: 'איך מגיעים אלינו — Demo',
+        doctorAlt: 'Demo Clinic',
+        eyebrow: 'מרפאת דמו',
+        lede: 'מדריך קצר מהבית עד לדלת המרפאה — כולל ניווט, וההליכה בתוך הבניין צעד־צעד.',
+        flowH2: 'איך מגיעים אלינו',
+        flowSub: 'מדריך צעד־צעד מהכניסה שלכם עד דלת המרפאה',
+        flowBtn: 'הציגו את המדריך',
+        addrLine: 'רחוב הדוגמה 1, כניסה ב׳, קומה 5',
+        addrCity: 'עיר לדוגמה',
+        wazeBtn: 'נווטו עם Waze',
+        gmapsBtn: 'נווטו עם Google Maps',
+        parkingHeader: 'חניה בסביבה',
+        parking1Title: 'חניון קניון העיר',
+        parking1Desc: 'רחוב הדוגמה 2 — חניון מקורה, כ־5 דקות הליכה. האפשרות הכי בטוחה למצוא מקום.',
+        wazeParking: 'Waze לחניון',
+        gmapsParking: 'Google Maps לחניון',
+        parking2Title: 'חניה ברחוב בתשלום',
+        parking2Desc: 'לאורך הרחוב והרחובות הסמוכים — אזור כחול־לבן, תשלום באפליקציית פנגו או סלופארק.',
+        transitNote: 'מגיעים בתחבורה ציבורית? קווי אוטובוס רבים עוצרים במרחק הליכה קצרה מהמרפאה.',
+        routeH2: 'מאיפה אתם מגיעים?',
+        routeSub: 'בחרו נקודת התחלה, ונראה לכם את הנתיב המדויק מהיכן שאתם עומדים.',
+        routeGroupAria: 'בחירת כניסה',
+        routeALabel: 'מהרחוב הראשי',
+        routeBLabel: 'ליד הסופרמרקט',
+        routeCLabel: 'מהקניון',
+        yourRouteH2: 'הנתיב שלכם',
+        mallPlazaTitle: 'תגיעו לרחבה מול הבניין',
+        mallPlazaDesc: 'יציאת הקניון מובילה לרחבה החיצונית, מול חזית הבניין.',
+        mallPlazaAlt: 'חזית הבניין, כפי שנראית מהרחבה שמול יציאת הקניון',
+        lobbyTitle: 'בלובי, פנו לכיוון המעליות',
+        lobbyDesc: 'מכל כניסה — שילוט כחול יכוון אתכם ללובי המעליות המשותף.',
+        lobbyAlt: 'לובי הכניסה עם שילוט כניסה A וכניסה B',
+        lobbyMallAlt: 'מבט רחב על הלובי עם שילוט כניסה A וכניסה B',
+        elevatorTitle: 'עלו במעלית לקומה 5',
+        elevatorDesc: 'לוח הדיירים שליד המעלית מציג את המרפאה בקומה 5, יחידה 9.',
+        elevatorAlt: 'לובי מעליות עם לוח קומות',
+        corridorTitle: 'בצאתכם מהמעלית, המשיכו במסדרון עד הסוף',
+        corridorDesc: 'הספרה הירוקה הגדולה "5" על הקיר מאשרת שהגעתם לקומה הנכונה.',
+        corridorAlt: 'מסדרון קומה 5 עם ספרת 5 ירוקה גדולה',
+        doorTitle: 'דלת המרפאה — יחידה 9',
+        doorDesc: 'השלט השחור עם הלוגו נמצא ליד דלת הזכוכית. אין צורך לצלצל.',
+        doorAlt: 'דלת המרפאה עם שלט ומספר 9',
+        receptionTitle: 'הגעתם!',
+        receptionDesc: 'התייצבו בקבלה, ואנחנו נדאג להמשך.',
+        receptionAlt: 'דלפק הקבלה של המרפאה',
+        phoneLabel: 'לא מוצאים אותנו?',
+        phoneNote: 'נענה בשמחה ונדריך אתכם',
+        footer: 'Demo Clinic — Clinic Navigation Template',
+        lightboxClose: 'סגירה'
+      },
+      routes: {
+        a: { title: 'הגיעו לכניסה A', desc: 'מהרחוב הראשי — הכניסה הראשית, מסומנת בגדול "A".', alt: 'כניסה A מהרחוב הראשי', sub: 'חמישה צעדים מכניסה A עד דלת המרפאה.' },
+        b: { title: 'הגיעו לכניסה B', desc: 'בצד המבנה, ליד הסופרמרקט — שילוט "B" עם חץ מכוון פנימה.', alt: 'כניסה B ליד הסופרמרקט', sub: 'שלושה צעדים מכניסה B עד דלת המרפאה — עולים ישירות למעלית.' },
+        c: { title: 'צאו מהקניון לכיוון כניסה A', desc: 'מהקניון — בצאתכם מהקניון פנו שמאלה, הכניסה תהיה בהמשך הדרך (אותה כניסה A, מהכיוון השני).', alt: 'יציאה מהקניון לכיוון כניסה A', sub: 'שישה צעדים מיציאת הקניון עד דלת המרפאה.' }
+      }
+    },
+    en: {
+      t: {
+        pageTitle: 'How to Reach Us — Demo',
+        doctorAlt: 'Demo Clinic',
+        eyebrow: 'Demo Clinic',
+        lede: 'A quick guide from your home to the clinic door — including directions, and the walk through the building step by step.',
+        flowH2: 'How to Reach Us',
+        flowSub: 'Step-by-step guide from your entrance to the clinic door',
+        flowBtn: 'Show the guide',
+        addrLine: '1 Example St, Entrance B, 5th Floor',
+        addrCity: 'Sample City',
+        wazeBtn: 'Navigate with Waze',
+        gmapsBtn: 'Navigate with Google Maps',
+        parkingHeader: 'Parking nearby',
+        parking1Title: 'City Mall parking',
+        parking1Desc: '2 Example St — covered parking, about a 5-minute walk. The safest bet for finding a spot.',
+        wazeParking: 'Waze to the parking lot',
+        gmapsParking: 'Google Maps to the parking lot',
+        parking2Title: 'Paid street parking',
+        parking2Desc: 'Along the street and nearby streets — blue-and-white zone, pay via the Pango or Cellopark app.',
+        transitNote: 'Coming by public transit? Many bus lines stop a short walk from the clinic.',
+        routeH2: 'Where are you coming from?',
+        routeSub: "Pick your starting point, and we'll show you the exact route from where you are.",
+        routeGroupAria: 'Choose entrance',
+        routeALabel: 'From the main street',
+        routeBLabel: 'Near the supermarket',
+        routeCLabel: 'From the mall',
+        yourRouteH2: 'Your route',
+        mallPlazaTitle: 'Reach the plaza facing the building',
+        mallPlazaDesc: 'The mall exit leads to the outdoor plaza, facing the building front.',
+        mallPlazaAlt: 'Building front, as seen from the plaza facing the mall exit',
+        lobbyTitle: 'In the lobby, head toward the elevators',
+        lobbyDesc: 'From either entrance — blue signage will direct you to the shared elevator lobby.',
+        lobbyAlt: 'Entrance lobby with signage for Entrance A and Entrance B',
+        lobbyMallAlt: 'Wide view of the lobby with signage for Entrance A and Entrance B',
+        elevatorTitle: 'Take the elevator to floor 5',
+        elevatorDesc: 'The tenant board next to the elevator shows the clinic on floor 5, unit 9.',
+        elevatorAlt: 'Elevator lobby with floor directory',
+        corridorTitle: 'Exiting the elevator, walk to the end of the corridor',
+        corridorDesc: 'The large green "5" on the wall confirms you\'re on the right floor.',
+        corridorAlt: 'Floor 5 corridor with a large green number 5',
+        doorTitle: 'Clinic door — unit 9',
+        doorDesc: "The black sign with the logo is next to the glass door. No need to ring.",
+        doorAlt: 'Clinic door with sign and number 9',
+        receptionTitle: "You've arrived!",
+        receptionDesc: "Check in at reception, and we'll take it from there.",
+        receptionAlt: 'Clinic reception desk',
+        phoneLabel: "Can't find us?",
+        phoneNote: "We'll gladly answer and guide you.",
+        footer: 'Demo Clinic — Clinic Navigation Template',
+        lightboxClose: 'Close'
+      },
+      routes: {
+        a: { title: 'Reach Entrance A', desc: 'From the main street — the main entrance, marked with a large "A".', alt: 'Entrance A from the main street', sub: 'Five steps from Entrance A to the clinic door.' },
+        b: { title: 'Reach Entrance B', desc: 'On the side of the building, near the supermarket — signage "B" with an arrow pointing in.', alt: 'Entrance B near the supermarket', sub: 'Three steps from Entrance B to the clinic door — straight up to the elevator.' },
+        c: { title: 'Exit the mall toward Entrance A', desc: 'From the mall — as you exit, turn left; the entrance is further along (the same Entrance A, from the other side).', alt: 'Exit from the mall toward Entrance A', sub: 'Six steps from the mall exit to the clinic door.' }
+      }
+    },
+    ru: {
+      t: {
+        pageTitle: 'Как до нас добраться — Demo',
+        doctorAlt: 'Демо-клиника',
+        eyebrow: 'Демо-клиника',
+        lede: 'Краткое руководство от дома до двери клиники — включая маршрут и проход по зданию шаг за шагом.',
+        flowH2: 'Как до нас добраться',
+        flowSub: 'Пошаговое руководство от вашего входа до двери клиники',
+        flowBtn: 'Показать руководство',
+        addrLine: 'ул. Примерная, 1, вход Б, 5 этаж',
+        addrCity: 'Город Пример',
+        wazeBtn: 'Навигация через Waze',
+        gmapsBtn: 'Навигация через Google Maps',
+        parkingHeader: 'Парковка поблизости',
+        parking1Title: 'Парковка Городского ТЦ',
+        parking1Desc: 'ул. Примерная, 2 — крытая парковка, около 5 минут пешком. Самый надёжный способ найти место.',
+        wazeParking: 'Waze к парковке',
+        gmapsParking: 'Google Maps к парковке',
+        parking2Title: 'Платная парковка на улице',
+        parking2Desc: 'Вдоль улицы и соседних улиц — бело-синяя зона, оплата через приложение Pango или Cellopark.',
+        transitNote: 'Едете на общественном транспорте? Многие автобусы останавливаются в нескольких минутах ходьбы от клиники.',
+        routeH2: 'Откуда вы приезжаете?',
+        routeSub: 'Выберите точку отправления, и мы покажем точный маршрут оттуда, где вы находитесь.',
+        routeGroupAria: 'Выбор входа',
+        routeALabel: 'С главной улицы',
+        routeBLabel: 'Рядом с супермаркетом',
+        routeCLabel: 'Из торгового центра',
+        yourRouteH2: 'Ваш маршрут',
+        mallPlazaTitle: 'Выйдите на площадь напротив здания',
+        mallPlazaDesc: 'Выход из торгового центра ведёт на открытую площадь напротив фасада здания.',
+        mallPlazaAlt: 'Фасад здания, вид с площади напротив выхода из торгового центра',
+        lobbyTitle: 'В холле поверните к лифтам',
+        lobbyDesc: 'От любого входа синие указатели приведут вас к общему лифтовому холлу.',
+        lobbyAlt: 'Холл входа с указателями входа A и входа B',
+        lobbyMallAlt: 'Широкий вид холла с указателями входа A и входа B',
+        elevatorTitle: 'Поднимитесь на лифте на 5 этаж',
+        elevatorDesc: 'На табло жильцов рядом с лифтом указана клиника, 5 этаж, офис 9.',
+        elevatorAlt: 'Лифтовой холл с табло этажей',
+        corridorTitle: 'Выйдя из лифта, идите по коридору до конца',
+        corridorDesc: 'Большая зелёная цифра «5» на стене подтверждает, что вы на нужном этаже.',
+        corridorAlt: 'Коридор 5 этажа с большой зелёной цифрой 5',
+        doorTitle: 'Дверь клиники — офис 9',
+        doorDesc: 'Чёрная табличка с логотипом находится рядом со стеклянной дверью. Звонить не нужно.',
+        doorAlt: 'Дверь клиники с табличкой и номером 9',
+        receptionTitle: 'Вы на месте!',
+        receptionDesc: 'Подойдите к стойке регистрации, а дальше мы всё организуем.',
+        receptionAlt: 'Стойка регистрации клиники',
+        phoneLabel: 'Не можете нас найти?',
+        phoneNote: 'Мы с радостью ответим и подскажем дорогу.',
+        footer: 'Demo Clinic — Clinic Navigation Template',
+        lightboxClose: 'Закрыть'
+      },
+      routes: {
+        a: { title: 'Дойдите до входа A', desc: 'С главной улицы — главный вход, отмечен крупной надписью «A».', alt: 'Вход A с главной улицы', sub: 'Пять шагов от входа A до двери клиники.' },
+        b: { title: 'Дойдите до входа B', desc: 'Сбоку здания, рядом с супермаркетом — указатель «B» со стрелкой внутрь.', alt: 'Вход B рядом с супермаркетом', sub: 'Три шага от входа B до двери клиники — сразу к лифту.' },
+        c: { title: 'Выйдите из торгового центра к входу A', desc: 'Из торгового центра — выйдя, поверните налево; вход будет чуть дальше (тот же вход A, с другой стороны).', alt: 'Выход из торгового центра к входу A', sub: 'Шесть шагов от выхода из торгового центра до двери клиники.' }
+      }
+    },
+    ar: {
+      t: {
+        pageTitle: 'كيف تصلون إلينا — Demo',
+        doctorAlt: 'عيادة تجريبية',
+        eyebrow: 'عيادة تجريبية',
+        lede: 'دليل قصير من المنزل حتى باب العيادة — يشمل التوجيه، والمشي داخل المبنى خطوة بخطوة.',
+        flowH2: 'كيف تصلون إلينا',
+        flowSub: 'دليل خطوة بخطوة من مدخلكم حتى باب العيادة',
+        flowBtn: 'عرض الدليل',
+        addrLine: 'شارع المثال 1، مدخل B، الطابق 5',
+        addrCity: 'مدينة النموذج',
+        wazeBtn: 'التنقل عبر Waze',
+        gmapsBtn: 'التنقل عبر خرائط Google',
+        parkingHeader: 'مواقف قريبة',
+        parking1Title: 'موقف مول المدينة',
+        parking1Desc: 'شارع المثال 2 — موقف مسقوف، على بعد حوالي 5 دقائق سيرًا. الخيار الأكثر أمانًا لإيجاد مكان.',
+        wazeParking: 'Waze إلى الموقف',
+        gmapsParking: 'خرائط Google إلى الموقف',
+        parking2Title: 'وقوف مدفوع في الشارع',
+        parking2Desc: 'على طول الشارع والشوارع المجاورة — منطقة زرقاء وبيضاء، الدفع عبر تطبيق Pango أو Cellopark.',
+        transitNote: 'قادمون بالمواصلات العامة؟ تتوقف خطوط حافلات كثيرة على مسافة قريبة سيرًا من العيادة.',
+        routeH2: 'من أين أنتم قادمون؟',
+        routeSub: 'اختاروا نقطة انطلاقكم، وسنعرض لكم المسار الدقيق من مكانكم.',
+        routeGroupAria: 'اختيار المدخل',
+        routeALabel: 'من الشارع الرئيسي',
+        routeBLabel: 'بجانب السوبرماركت',
+        routeCLabel: 'من المول',
+        yourRouteH2: 'مسارك',
+        mallPlazaTitle: 'صلوا إلى الساحة المقابلة للمبنى',
+        mallPlazaDesc: 'يؤدي مخرج المول إلى الساحة الخارجية، مقابل واجهة المبنى.',
+        mallPlazaAlt: 'واجهة المبنى، كما تُرى من الساحة المقابلة لمخرج المول',
+        lobbyTitle: 'في اللوبي، اتجهوا نحو المصاعد',
+        lobbyDesc: 'من أي مدخل — ستوجهكم لافتات زرقاء إلى لوبي المصاعد المشترك.',
+        lobbyAlt: 'لوبي المدخل مع لافتات المدخل A والمدخل B',
+        lobbyMallAlt: 'منظر واسع للوبي مع لافتات المدخل A والمدخل B',
+        elevatorTitle: 'اصعدوا بالمصعد إلى الطابق 5',
+        elevatorDesc: 'تُظهر لوحة السكان بجانب المصعد: العيادة، الطابق 5، الوحدة 9.',
+        elevatorAlt: 'لوبي المصاعد مع لوحة الطوابق',
+        corridorTitle: 'عند الخروج من المصعد، تابعوا في الممر حتى النهاية',
+        corridorDesc: 'الرقم الأخضر الكبير "5" على الجدار يؤكد أنكم وصلتم إلى الطابق الصحيح.',
+        corridorAlt: 'ممر الطابق 5 مع رقم 5 أخضر كبير',
+        doorTitle: 'باب العيادة — الوحدة 9',
+        doorDesc: 'اللافتة السوداء التي تحمل الشعار توجد بجانب الباب الزجاجي. لا داعي لقرع الجرس.',
+        doorAlt: 'باب العيادة مع لافتة ورقم 9',
+        receptionTitle: 'لقد وصلتم!',
+        receptionDesc: 'توجهوا إلى الاستقبال، وسنهتم بالباقي.',
+        receptionAlt: 'طاولة استقبال العيادة',
+        phoneLabel: 'لا تجدوننا؟',
+        phoneNote: 'سنسعد بالرد وإرشادكم.',
+        footer: 'Demo Clinic — Clinic Navigation Template',
+        lightboxClose: 'إغلاق'
+      },
+      routes: {
+        a: { title: 'صلوا إلى المدخل A', desc: 'من الشارع الرئيسي — المدخل الرئيسي، مكتوب عليه بخط كبير "A".', alt: 'المدخل A من الشارع الرئيسي', sub: 'خمس خطوات من المدخل A حتى باب العيادة.' },
+        b: { title: 'صلوا إلى المدخل B', desc: 'على جانب المبنى، بجانب السوبرماركت — لافتة "B" مع سهم يشير إلى الداخل.', alt: 'المدخل B بجانب السوبرماركت', sub: 'ثلاث خطوات من المدخل B حتى باب العيادة — صعودًا مباشرة إلى المصعد.' },
+        c: { title: 'اخرجوا من المول باتجاه المدخل A', desc: 'من المول — عند خروجكم انعطفوا يسارًا، المدخل سيكون بعد قليل (نفس المدخل A، من الجهة الأخرى).', alt: 'الخروج من المول باتجاه المدخل A', sub: 'ست خطوات من مخرج المول حتى باب العيادة.' }
+      }
+    }
+  };
+
+  // ponytail: minimal runnable check — catches a typo'd or missing translation key immediately in the console.
+  (function validateI18n(){
+    const base = Object.keys(I18N.he.t).sort().join(',');
+    Object.keys(I18N).forEach(lang => {
+      if (Object.keys(I18N[lang].t).sort().join(',') !== base) {
+        console.error(`i18n: "${lang}" translation keys don't match "he"`);
+      }
+      ['a', 'b', 'c'].forEach(r => {
+        if (!I18N[lang].routes[r]) console.error(`i18n: "${lang}" missing route "${r}"`);
+      });
+    });
+  })();
+
+  function getRoute(key){
+    return { ...ROUTES_META[key], ...I18N[currentLang].routes[key] };
+  }
+
+  const photoEl = document.getElementById('entrance-photo');
+  const titleEl = document.getElementById('entrance-title');
+  const descEl = document.getElementById('entrance-desc');
+  const subEl = document.getElementById('route-sub');
+  const routeButtons = document.querySelectorAll('.route-btn');
+  const allSteps = document.querySelectorAll('.steps .step');
+
+  let currentLang = 'he';
+  let currentRouteKey = 'b';
+
+  function fillRoute(route){
+    photoEl.src = route.photo;
+    photoEl.alt = route.alt;
+    titleEl.textContent = route.title;
+    descEl.textContent = route.desc;
+    subEl.textContent = route.sub;
+
+    let n = 0;
+    allSteps.forEach(step => {
+      const isSkipped = route.skip.includes(step.id);
+      step.hidden = isSkipped;
+      if (!isSkipped) {
+        n += 1;
+        step.querySelector('.step-num').textContent = n;
+      }
+    });
+  }
+
+  async function applyRoute(route){
+    const fading = [photoEl, titleEl, descEl, subEl];
+    if (!reduceMotion) {
+      await animate(fading, { opacity: [1, 0] }, { duration: 0.12, easing: 'ease-in' }).finished;
+    }
+    fillRoute(route);
+    if (!reduceMotion) {
+      animate(fading, { opacity: [0, 1] }, { duration: 0.22, easing: 'ease-out' });
+    }
+  }
+
+  routeButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (!ROUTES_META[btn.dataset.route]) return;
+      currentRouteKey = btn.dataset.route;
+      applyRoute(getRoute(currentRouteKey));
+      routeButtons.forEach(b => b.classList.toggle('is-active', b === btn));
+    });
+  });
+
+  const langBtn = document.getElementById('lang-btn');
+  const langBtnLabel = document.getElementById('lang-btn-label');
+  const langMenu = document.getElementById('lang-menu');
+  const langMenuButtons = document.querySelectorAll('#lang-menu button');
+
+  function applyLanguage(lang){
+    if (!I18N[lang]) return;
+    currentLang = lang;
+    document.documentElement.lang = lang;
+    document.documentElement.dir = LANG_DIR[lang];
+    document.title = I18N[lang].t.pageTitle;
+
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const value = I18N[lang].t[el.dataset.i18n];
+      if (value !== undefined) el.textContent = value;
+    });
+    document.querySelectorAll('[data-i18n-alt]').forEach(el => {
+      const value = I18N[lang].t[el.dataset.i18nAlt];
+      if (value !== undefined) el.alt = value;
+    });
+    document.querySelectorAll('[data-i18n-aria]').forEach(el => {
+      const value = I18N[lang].t[el.dataset.i18nAria];
+      if (value !== undefined) el.setAttribute('aria-label', value);
+    });
+
+    fillRoute(getRoute(currentRouteKey));
+
+    langBtnLabel.textContent = LANG_NAMES[lang];
+    langMenuButtons.forEach(b => b.classList.toggle('is-active', b.dataset.lang === lang));
+
+    try { localStorage.setItem('clinic-lang', lang); } catch {}
+  }
+
+  langBtn.addEventListener('click', () => {
+    const opening = langMenu.hidden;
+    langMenu.hidden = !opening;
+    langBtn.setAttribute('aria-expanded', String(opening));
+  });
+  langMenuButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      applyLanguage(btn.dataset.lang);
+      langMenu.hidden = true;
+      langBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
+  document.addEventListener('click', e => {
+    if (!langMenu.hidden && !e.target.closest('.lang-switch')) {
+      langMenu.hidden = true;
+      langBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  let initialLang = 'he';
+  try { initialLang = localStorage.getItem('clinic-lang') || 'he'; } catch {}
+  applyLanguage(initialLang);
+
+  const flowTrigger = document.getElementById('flow-trigger');
+  const flow = document.getElementById('flow');
+  flowTrigger.addEventListener('click', async () => {
+    const opening = flow.hidden;
+    if (opening) {
+      flow.hidden = false;
+      flowTrigger.classList.add('is-open');
+      if (!reduceMotion) {
+        await animate(flow, { opacity: [0, 1], transform: ['translateY(-8px)', 'translateY(0)'] }, { duration: 0.25, easing: 'ease-out' }).finished;
+      }
+      flow.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+    } else {
+      flowTrigger.classList.remove('is-open');
+      if (!reduceMotion) {
+        await animate(flow, { opacity: [1, 0] }, { duration: 0.15, easing: 'ease-in' }).finished;
+      }
+      flow.hidden = true;
+    }
+  });
+
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxClose = document.getElementById('lightbox-close');
+
+  function openLightbox(src, alt){
+    lightboxImg.src = src;
+    lightboxImg.alt = alt;
+    lightbox.hidden = false;
+    document.body.style.overflow = 'hidden';
+    history.pushState({ lightbox: true }, '');
+    if (!reduceMotion) {
+      animate(lightboxImg, { opacity: [0, 1], scale: [0.94, 1] }, { duration: 0.18, easing: 'ease-out' });
+    }
+  }
+  async function closeLightbox(){
+    if (lightbox.hidden) return;
+    if (!reduceMotion) {
+      await animate(lightboxImg, { opacity: [1, 0], scale: [1, 0.96] }, { duration: 0.12, easing: 'ease-in' }).finished;
+    }
+    lightbox.hidden = true;
+    document.body.style.overflow = '';
+    if (history.state && history.state.lightbox) history.back();
+  }
+
+  document.querySelectorAll('.step-photo').forEach(img => {
+    img.addEventListener('click', () => openLightbox(img.src, img.alt));
+  });
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  window.addEventListener('popstate', () => {
+    lightbox.hidden = true;
+    document.body.style.overflow = '';
+  });
+</script>

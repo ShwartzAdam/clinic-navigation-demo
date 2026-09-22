@@ -1,0 +1,8 @@
+<svg viewBox="0 0 320 240" xmlns="http://www.w3.org/2000/svg">
+  <rect width="320" height="240" fill="#DDE3DC"/>
+  <circle cx="160" cy="102" r="62" fill="#c8d0c6"/>
+  <g stroke="#596457" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="128" y="62" width="64" height="100" rx="4"/><line x1="160" y1="62" x2="160" y2="162"/><path d="M140 96l8-8 8 8M180 96l-8-8-8 8"/><path d="M140 128l8 8 8-8M180 128l-8 8-8-8"/>
+  </g>
+  <text x="160" y="200" font-family="Arial, sans-serif" font-size="15" font-weight="600" fill="#252421" text-anchor="middle">Elevator</text>
+</svg>
