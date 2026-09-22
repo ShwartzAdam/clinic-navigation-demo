@@ -108,11 +108,20 @@
     gap:16px;
     flex-wrap:wrap;
   }
+  .doctor-photo{
+    width:72px;
+    height:72px;
+    border-radius:50%;
+    object-fit:cover;
+    object-position:50% 25%;
+    border:2px solid var(--brand);
+    flex:0 0 auto;
+  }
   .logo-mark{
     display:block;
-    width:min(240px, 70%);
+    width:min(300px, 60%);
     height:auto;
-    margin:0 auto;
+    margin:0;
   }
   .eyebrow{
     font-size:13px;
@@ -515,6 +524,7 @@
 
   <header class="page">
     <div class="header-brand">
+      <img class="doctor-photo" src="photos/avatar-placeholder.svg" alt="Demo Clinic" data-i18n-alt="doctorAlt">
       <img class="logo-mark" src="photos/logo-placeholder.svg" alt="Demo Clinic" data-i18n-alt="doctorAlt">
     </div>
     <div class="eyebrow" data-i18n="eyebrow">מרפאת דמו</div>
