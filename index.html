@@ -269,10 +269,9 @@
     font-size:14px;
     color:var(--ink-soft);
     display:flex;
-    align-items:flex-start;
-    gap:8px;
+    align-items:center;
+    gap:12px;
   }
-  .transit-note svg{flex:0 0 auto;margin-top:1px;}
 
   .flow-cta{
     text-align:center;
@@ -622,13 +621,15 @@
         </div>
 
         <div class="transit-note">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <rect x="4" y="3" width="16" height="13" rx="3" stroke="var(--accent)" stroke-width="2"/>
-            <path d="M4 11h16" stroke="var(--accent)" stroke-width="2"/>
-            <path d="M7 19v1.5M17 19v1.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
-            <circle cx="8" cy="13.5" r="1.1" fill="var(--accent)"/>
-            <circle cx="16" cy="13.5" r="1.1" fill="var(--accent)"/>
-          </svg>
+          <div class="addr-icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <rect x="4" y="3" width="16" height="13" rx="3" stroke="var(--accent)" stroke-width="2"/>
+              <path d="M4 11h16" stroke="var(--accent)" stroke-width="2"/>
+              <path d="M7 19v1.5M17 19v1.5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="8" cy="13.5" r="1.1" fill="var(--accent)"/>
+              <circle cx="16" cy="13.5" r="1.1" fill="var(--accent)"/>
+            </svg>
+          </div>
           <span data-i18n="transitNote">מגיעים בתחבורה ציבורית? קווי אוטובוס רבים עוצרים במרחק הליכה קצרה מהמרפאה.</span>
         </div>
       </div>
