@@ -14,7 +14,7 @@
 <meta name="twitter:description" content="דוגמה חיה: מדריך קצר מהבית עד לדלת המרפאה, כולל ניווט וההליכה בתוך הבניין צעד־צעד.">
 <meta name="twitter:image" content="https://shwartzadam.github.io/clinic-navigation-demo/photos/logo-placeholder.svg">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700&family=Heebo:wght@400;500;600;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700&family=Heebo:wght@400;500;600;700&family=Cairo:wght@500;600;700&family=PT+Sans:wght@400;700&family=Noto+Sans+Ethiopic:wght@400;500;700&display=swap');
 
   :root{
     --bg:#F8F6F1;
@@ -44,6 +44,13 @@
   }
   html[dir="ltr"] body{direction:ltr;}
   .wrap{max-width:640px;margin:0 auto;}
+
+  /* Per-script font stacks — Heebo only covers Hebrew/Latin, so Arabic,
+     Russian and Amharic/Tigrinya need their own market-standard fonts. */
+  html[lang="ar"] body{font-family:'Cairo','Segoe UI',Tahoma,sans-serif;font-size:105%;}
+  html[lang="ru"] body{font-family:'PT Sans','Segoe UI',Arial,sans-serif;}
+  html[lang="am"] body,
+  html[lang="ti"] body{font-family:'Noto Sans Ethiopic','Nyala','Segoe UI',sans-serif;font-size:104%;}
 
   .lang-switch{
     position:relative;
@@ -157,6 +164,10 @@
   h1{
     font-family:'Frank Ruhl Libre', 'Times New Roman', serif;
     font-weight:700;
+  }
+  html:not([lang="he"]) h1{
+    font-family:inherit;
+    font-weight:800;
     font-size:clamp(28px,6vw,38px);
     line-height:1.2;
     margin:10px 0 10px;
@@ -181,7 +192,7 @@
   .card-pad{padding:22px;}
 
   h2{
-    font-family:'Heebo', sans-serif;
+    font-family:inherit;
     font-size:21px;
     font-weight:700;
   }
@@ -545,9 +556,12 @@
     </button>
     <div class="lang-menu" id="lang-menu" hidden role="menu">
       <button type="button" data-lang="he" role="menuitem">עברית</button>
-      <button type="button" data-lang="en" role="menuitem">English</button>
-      <button type="button" data-lang="ru" role="menuitem">Русский</button>
       <button type="button" data-lang="ar" role="menuitem">العربية</button>
+      <button type="button" data-lang="am" role="menuitem">አማርኛ</button>
+      <button type="button" data-lang="ru" role="menuitem">Русский</button>
+      <button type="button" data-lang="ti" role="menuitem">ትግርኛ</button>
+      <button type="button" data-lang="fr" role="menuitem">Français</button>
+      <button type="button" data-lang="en" role="menuitem">English</button>
     </div>
   </div>
 
@@ -775,8 +789,8 @@
     c: { photo: 'photos/entrance-c.svg', skip: ['step-lobby'] }
   };
 
-  const LANG_NAMES = { he: 'עברית', en: 'English', ru: 'Русский', ar: 'العربية' };
-  const LANG_DIR = { he: 'rtl', en: 'ltr', ru: 'ltr', ar: 'rtl' };
+  const LANG_NAMES = { he: 'עברית', en: 'English', ru: 'Русский', ar: 'العربية', am: 'አማርኛ', ti: 'ትግርኛ', fr: 'Français' };
+  const LANG_DIR = { he: 'rtl', en: 'ltr', ru: 'ltr', ar: 'rtl', am: 'ltr', ti: 'ltr', fr: 'ltr' };
 
   const I18N = {
     he: {
@@ -1013,6 +1027,180 @@
         a: { title: 'صلوا إلى المدخل A', desc: 'من الشارع الرئيسي — المدخل الرئيسي، مكتوب عليه بخط كبير "A".', alt: 'المدخل A من الشارع الرئيسي', sub: 'خمس خطوات من المدخل A حتى باب العيادة.' },
         b: { title: 'صلوا إلى المدخل B', desc: 'على جانب المبنى، بجانب السوبرماركت — لافتة "B" مع سهم يشير إلى الداخل.', alt: 'المدخل B بجانب السوبرماركت', sub: 'ثلاث خطوات من المدخل B حتى باب العيادة — صعودًا مباشرة إلى المصعد.' },
         c: { title: 'اخرجوا من المول باتجاه المدخل A', desc: 'من المول — عند خروجكم انعطفوا يسارًا، المدخل سيكون بعد قليل (نفس المدخل A، من الجهة الأخرى).', alt: 'الخروج من المول باتجاه المدخل A', sub: 'ست خطوات من مخرج المول حتى باب العيادة.' }
+      }
+    },
+    am: {
+      t: {
+        pageTitle: 'ወደ እኛ እንዴት እንደሚደርሱ — Demo',
+        doctorAlt: 'ሙከራ ክሊኒክ',
+        eyebrow: 'ሙከራ ክሊኒክ',
+        lede: 'ከቤትዎ እስከ ክሊኒኩ በር ድረስ አጭር መመሪያ — አቅጣጫን እና በህንፃው ውስጥ ደረጃ በደረጃ መጓዝን ጨምሮ።',
+        flowH2: 'ወደ እኛ እንዴት እንደሚደርሱ',
+        flowSub: 'ከመግቢያዎ እስከ ክሊኒኩ በር ደረጃ በደረጃ መመሪያ',
+        flowBtn: 'መመሪያውን አሳይ',
+        addrLine: '1 ምሳሌ ጎዳና, መግቢያ B, 5ኛ ፎቅ',
+        addrCity: 'ናሙና ከተማ',
+        wazeBtn: 'በ Waze ይምሩ',
+        gmapsBtn: 'በ Google Maps ይምሩ',
+        parkingHeader: 'በአቅራቢያ ያለ ማቆሚያ',
+        parking1Title: 'የከተማ ሞል ማቆሚያ',
+        parking1Desc: '2 ምሳሌ ጎዳና — የተሸፈነ ማቆሚያ፣ በእግር 5 ደቂቃ ያህል። ቦታ ለማግኘት በጣም አስተማማኝ አማራጭ።',
+        wazeParking: 'ወደ ማቆሚያው Waze',
+        gmapsParking: 'ወደ ማቆሚያው Google Maps',
+        parking2Title: 'በክፍያ የመንገድ ማቆሚያ',
+        parking2Desc: 'በመንገዱ እና በአጎራባች መንገዶች ላይ — ሰማያዊ እና ነጭ ዞን፣ በ Pango ወይም Cellopark መተግበሪያ ይክፈሉ።',
+        transitNote: 'በሕዝብ ማመላለሻ እየመጡ ነው? ብዙ የአውቶብስ መስመሮች ከክሊኒኩ በእግር ትንሽ ርቀት ላይ ያቆማሉ።',
+        routeH2: 'ከየት እየመጡ ነው?',
+        routeSub: 'መነሻ ነጥብዎን ይምረጡ፣ እኛም ካሉበት ትክክለኛውን መንገድ እናሳይዎታለን።',
+        routeGroupAria: 'መግቢያ ይምረጡ',
+        routeALabel: 'ከዋናው መንገድ',
+        routeBLabel: 'ከሱፐርማርኬት አጠገብ',
+        routeCLabel: 'ከሞል',
+        yourRouteH2: 'የእርስዎ መንገድ',
+        mallPlazaTitle: 'ከህንፃው ፊት ለፊት ወዳለው አደባባይ ይድረሱ',
+        mallPlazaDesc: 'የሞሉ መውጫ ወደ ውጫዊ አደባባይ ይመራል፣ ከህንፃው ፊት ለፊት።',
+        mallPlazaAlt: 'ከሞሉ መውጫ ፊት ለፊት ካለው አደባባይ የሚታይ የህንፃው ፊት',
+        lobbyTitle: 'በሎቢው ውስጥ ወደ አሳንሰሮቹ ያቅኑ',
+        lobbyDesc: 'ከየትኛውም መግቢያ — ሰማያዊ ምልክቶች ወደ የጋራ አሳንሰር ሎቢ ይመሩዎታል።',
+        lobbyAlt: 'የመግቢያ A እና መግቢያ B ምልክቶች ያሉት የመግቢያ ሎቢ',
+        lobbyMallAlt: 'የመግቢያ A እና መግቢያ B ምልክቶች ያሉት ሰፊ የሎቢ እይታ',
+        elevatorTitle: 'በአሳንሰር ወደ 5ኛ ፎቅ ይውጡ',
+        elevatorDesc: 'ከአሳንሰሩ አጠገብ ያለው የነዋሪዎች ሰሌዳ ክሊኒኩን በ5ኛ ፎቅ፣ ክፍል 9 ያሳያል።',
+        elevatorAlt: 'የፎቅ ማውጫ ሰሌዳ ያለው የአሳንሰር ሎቢ',
+        corridorTitle: 'ከአሳንሰሩ ሲወጡ፣ እስከ መተላለፊያው መጨረሻ ይቀጥሉ',
+        corridorDesc: 'በግድግዳው ላይ ያለው ትልቅ አረንጓዴ "5" ትክክለኛው ፎቅ ላይ መሆንዎን ያረጋግጣል።',
+        corridorAlt: 'ትልቅ አረንጓዴ ቁጥር 5 ያለው የ5ኛ ፎቅ መተላለፊያ',
+        doorTitle: 'የክሊኒክ በር — ክፍል 9',
+        doorDesc: 'አርማ ያለበት ጥቁር ምልክት ከመስታወት በሩ አጠገብ ይገኛል። መደወል አያስፈልግም።',
+        doorAlt: 'ምልክት እና ቁጥር 9 ያለው የክሊኒክ በር',
+        receptionTitle: 'ደርሰዋል!',
+        receptionDesc: 'በእንኳን ደህና መጡ ጠረጴዛ ላይ ይመዝገቡ፣ የተቀረውን እኛ እናስተናግዳለን።',
+        receptionAlt: 'የክሊኒክ አቀባበል ጠረጴዛ',
+        phoneLabel: 'እኛን ማግኘት አልቻሉም?',
+        phoneNote: 'በደስታ እንመልስልዎታለን እና እንመራዎታለን።',
+        footer: 'Demo Clinic — Clinic Navigation Template',
+        lightboxClose: 'ዝጋ'
+      },
+      routes: {
+        a: { title: 'ወደ መግቢያ A ይድረሱ', desc: 'ከዋናው መንገድ — ዋናው መግቢያ፣ በትልቅ "A" ምልክት ተደርጎበታል።', alt: 'ከዋናው መንገድ መግቢያ A', sub: 'ከመግቢያ A እስከ ክሊኒኩ በር አምስት እርምጃዎች።' },
+        b: { title: 'ወደ መግቢያ B ይድረሱ', desc: 'በህንፃው ጎን፣ ከሱፐርማርኬት አጠገብ — ወደ ውስጥ የሚያመለክት ቀስት ያለው "B" ምልክት።', alt: 'ከሱፐርማርኬት አጠገብ ያለ መግቢያ B', sub: 'ከመግቢያ B እስከ ክሊኒኩ በር ሶስት እርምጃዎች — በቀጥታ ወደ አሳንሰር።' },
+        c: { title: 'ከሞሉ ወደ መግቢያ A ይውጡ', desc: 'ከሞሉ — ሲወጡ ወደ ግራ ይታጠፉ፤ መግቢያው ትንሽ ወደፊት ይሆናል (ተመሳሳዩ መግቢያ A፣ ከሌላኛው ወገን)።', alt: 'ከሞሉ ወደ መግቢያ A መውጣት', sub: 'ከሞሉ መውጫ እስከ ክሊኒኩ በር ስድስት እርምጃዎች።' }
+      }
+    },
+    ti: {
+      t: {
+        pageTitle: 'ናባና ብኸመይ ይብጻሕ — Demo',
+        doctorAlt: 'ናሙና ክሊኒክ',
+        eyebrow: 'ናሙና ክሊኒክ',
+        lede: 'ካብ ገዛኹም ክሳብ ማዕጾ ክሊኒክ ሓጺር መምርሒ — መገዲ ምምራሕን ኣብ ውሽጢ ህንጻ ስጉምቲ ብስጉምቲ ምዝዋርን ዝሓቖፈ።',
+        flowH2: 'ናባና ብኸመይ ይብጻሕ',
+        flowSub: 'ካብ መእተዊኹም ክሳብ ማዕጾ ክሊኒክ ስጉምቲ ብስጉምቲ መምርሒ',
+        flowBtn: 'መምርሒ ኣርኢ',
+        addrLine: '1 ኣብነት ጎደና, መእተዊ B, 5ይ ደርቢ',
+        addrCity: 'ኣብነት ከተማ',
+        wazeBtn: 'ብ Waze ተመርሑ',
+        gmapsBtn: 'ብ Google Maps ተመርሑ',
+        parkingHeader: 'ኣብ ጥቓ ዘሎ መዕረፊ መኪና',
+        parking1Title: 'መዕረፊ መኪና ናይ ከተማ ሞል',
+        parking1Desc: '2 ኣብነት ጎደና — ዝተሸፈነ መዕረፊ መኪና፣ ኣስታት 5 ደቒቕ ብእግሪ። ቦታ ንምርካብ እቲ ዝበለጸ ውሑስ ኣማራጺ።',
+        wazeParking: 'ናብ መዕረፊ መኪና Waze',
+        gmapsParking: 'ናብ መዕረፊ መኪና Google Maps',
+        parking2Title: 'ብክፍሊት ኣብ ጎደና ዘሎ መዕረፊ',
+        parking2Desc: 'ኣብ ጎደናን ጎረባብቲ ጎደናታትን — ሰማያውን ጻዕዳን ዞባ፣ ብመተግበሪ Pango ወይ Cellopark ይኽፈል።',
+        transitNote: 'ብሓባራዊ መጓዓዓዚ ትመጹ ኣሎኹም? ብዙሓት መስመራት ኣውቶቡስ ካብ ክሊኒክ ብእግሪ ሓጺር ርሕቀት ይቆማ።',
+        routeH2: 'ካበይ ኢኹም ትመጹ ዘሎኹም?',
+        routeSub: 'መበገሲ ነጥብኹም ምረጹ፣ ካብ ዘለኹምዎ እቲ ልክዕ መገዲ ክንሕብረኩም ኢና።',
+        routeGroupAria: 'መእተዊ ምረጹ',
+        routeALabel: 'ካብ ቀንዲ ጎደና',
+        routeBLabel: 'ጥቓ ሱፐርማርኬት',
+        routeCLabel: 'ካብ ሞል',
+        yourRouteH2: 'መገድኹም',
+        mallPlazaTitle: 'ናብቲ ኣብ ቅድሚ ህንጻ ዘሎ ኣደባባይ ብጽሑ',
+        mallPlazaDesc: 'መውጽኢ ሞል ናብቲ ኣብ ቅድሚ ገጽ ህንጻ ዘሎ ግዳማዊ ኣደባባይ ይመርሕ።',
+        mallPlazaAlt: 'ካብቲ ኣብ ቅድሚ መውጽኢ ሞል ዘሎ ኣደባባይ ዝረአ ገጽ ህንጻ',
+        lobbyTitle: 'ኣብ ሎቢ፣ ናብ ኣስተንሰራት ኣምርሑ',
+        lobbyDesc: 'ካብ ዝኾነ መእተዊ — ሰማያዊ ምልክታት ናብቲ ሓባራዊ ሎቢ ኣስተንሰር ክመርሑኹም እዮም።',
+        lobbyAlt: 'ምልክታት መእተዊ A ከምኡውን መእተዊ B ዘለዎ ሎቢ መእተዊ',
+        lobbyMallAlt: 'ምልክታት መእተዊ A ከምኡውን መእተዊ B ዘለዎ ሰፊሕ ትርኢት ሎቢ',
+        elevatorTitle: 'ብኣስተንሰር ናብ 5ይ ደርቢ ደይቡ',
+        elevatorDesc: 'እቲ ጥቓ ኣስተንሰር ዘሎ ሰሌዳ ነበርቲ ክሊኒክ ኣብ 5ይ ደርቢ፣ ክፍሊ 9 የርኢ።',
+        elevatorAlt: 'ሰሌዳ ደርብታት ዘለዎ ሎቢ ኣስተንሰር',
+        corridorTitle: 'ካብ ኣስተንሰር ምስ ወጻእኩም፣ ክሳብ መወዳእታ መተሓላለፊ ቀጽሉ',
+        corridorDesc: 'እቲ ኣብ መንደቕ ዘሎ ዓቢ ቀጠልያ "5" ኣብ ልክዕ ደርቢ ከምዘለኹም የረጋግጽ።',
+        corridorAlt: 'ዓቢ ቀጠልያ ቁጽሪ 5 ዘለዎ መተሓላለፊ 5ይ ደርቢ',
+        doorTitle: 'ማዕጾ ክሊኒክ — ክፍሊ 9',
+        doorDesc: 'እቲ ምስ ኣርማ ዘሎ ጸሊም ምልክት ጥቓ ናይ ብርጭቆ ማዕጾ ይርከብ። ደወል ምድዋል ኣየድልን።',
+        doorAlt: 'ምልክትን ቁጽሪ 9ን ዘለዎ ማዕጾ ክሊኒክ',
+        receptionTitle: 'በጺሕኩም!',
+        receptionDesc: 'ኣብ መቀበሊ ተመዝገቡ፣ ዝተረፈ ንሕና ክንሪኦ ኢና።',
+        receptionAlt: 'ጣውላ መቀበሊ ክሊኒክ',
+        phoneLabel: 'ክትረኽቡና ኣይከኣልኩምን ድዩ?',
+        phoneNote: 'ብሓጎስ ክንምልሰልኩምን ክንመርሓኩምን ኢና።',
+        footer: 'Demo Clinic — Clinic Navigation Template',
+        lightboxClose: 'ዕጸው'
+      },
+      routes: {
+        a: { title: 'ናብ መእተዊ A ብጽሑ', desc: 'ካብ ቀንዲ ጎደና — እቲ ቀንዲ መእተዊ፣ ብዓቢ "A" ዝተጠቕሰ።', alt: 'መእተዊ A ካብ ቀንዲ ጎደና', sub: 'ካብ መእተዊ A ክሳብ ማዕጾ ክሊኒክ ሓሙሽተ ስጉምቲ።' },
+        b: { title: 'ናብ መእተዊ B ብጽሑ', desc: 'ኣብ ጎድኒ ህንጻ፣ ጥቓ ሱፐርማርኬት — ናብ ውሽጢ ዘመልክት ፍላጻ ዘለዎ ምልክት "B"።', alt: 'ጥቓ ሱፐርማርኬት ዘሎ መእተዊ B', sub: 'ካብ መእተዊ B ክሳብ ማዕጾ ክሊኒክ ሰለስተ ስጉምቲ — ብቐጥታ ናብ ኣስተንሰር።' },
+        c: { title: 'ካብ ሞል ናብ መእተዊ A ውጹ', desc: 'ካብ ሞል — ክትወጹ ከለኹም ናብ ጸጋም ተዓጸፉ፤ መእተዊ ቁሩብ ንቕድሚት ኣሎ (ተመሳሳሊ መእተዊ A፣ ካብ ካልእ ወገን)።', alt: 'ካብ ሞል ናብ መእተዊ A ምውጻእ', sub: 'ካብ መውጽኢ ሞል ክሳብ ማዕጾ ክሊኒክ ሽዱሽተ ስጉምቲ።' }
+      }
+    },
+    fr: {
+      t: {
+        pageTitle: "Comment nous rejoindre — Demo",
+        doctorAlt: 'Clinique Demo',
+        eyebrow: 'Clinique Demo',
+        lede: "Un guide rapide de chez vous jusqu'à la porte de la clinique — itinéraire compris, et la marche à l'intérieur du bâtiment étape par étape.",
+        flowH2: 'Comment nous rejoindre',
+        flowSub: "Guide étape par étape de votre entrée jusqu'à la porte de la clinique",
+        flowBtn: 'Afficher le guide',
+        addrLine: "1 Rue de l'Exemple, Entrée B, 5e étage",
+        addrCity: 'Ville Exemple',
+        wazeBtn: 'Naviguer avec Waze',
+        gmapsBtn: 'Naviguer avec Google Maps',
+        parkingHeader: 'Parking à proximité',
+        parking1Title: 'Parking du centre commercial',
+        parking1Desc: "2 Rue de l'Exemple — parking couvert, à environ 5 minutes à pied. L'option la plus sûre pour trouver une place.",
+        wazeParking: 'Waze vers le parking',
+        gmapsParking: 'Google Maps vers le parking',
+        parking2Title: 'Stationnement payant dans la rue',
+        parking2Desc: "Le long de la rue et des rues avoisinantes — zone bleue et blanche, paiement via l'application Pango ou Cellopark.",
+        transitNote: "Vous venez en transports en commun ? De nombreuses lignes de bus s'arrêtent à quelques minutes à pied de la clinique.",
+        routeH2: "D'où venez-vous ?",
+        routeSub: "Choisissez votre point de départ, et nous vous montrerons l'itinéraire exact depuis votre position.",
+        routeGroupAria: "Choix de l'entrée",
+        routeALabel: 'Depuis la rue principale',
+        routeBLabel: 'Près du supermarché',
+        routeCLabel: 'Depuis le centre commercial',
+        yourRouteH2: 'Votre itinéraire',
+        mallPlazaTitle: 'Rejoignez la place face au bâtiment',
+        mallPlazaDesc: 'La sortie du centre commercial mène à la place extérieure, face à la façade du bâtiment.',
+        mallPlazaAlt: 'Façade du bâtiment, vue depuis la place face à la sortie du centre commercial',
+        lobbyTitle: 'Dans le hall, dirigez-vous vers les ascenseurs',
+        lobbyDesc: "Depuis chaque entrée — une signalétique bleue vous guidera vers le hall d'ascenseurs commun.",
+        lobbyAlt: "Hall d'entrée avec signalétique Entrée A et Entrée B",
+        lobbyMallAlt: "Vue large du hall avec signalétique Entrée A et Entrée B",
+        elevatorTitle: "Prenez l'ascenseur jusqu'au 5e étage",
+        elevatorDesc: "Le tableau des occupants près de l'ascenseur indique la clinique au 5e étage, bureau 9.",
+        elevatorAlt: "Hall d'ascenseurs avec tableau des étages",
+        corridorTitle: "En sortant de l'ascenseur, allez jusqu'au bout du couloir",
+        corridorDesc: 'Le grand chiffre vert « 5 » sur le mur confirme que vous êtes au bon étage.',
+        corridorAlt: 'Couloir du 5e étage avec un grand chiffre vert 5',
+        doorTitle: 'Porte de la clinique — bureau 9',
+        doorDesc: "La plaque noire avec le logo se trouve à côté de la porte vitrée. Inutile de sonner.",
+        doorAlt: 'Porte de la clinique avec plaque et numéro 9',
+        receptionTitle: 'Vous êtes arrivés !',
+        receptionDesc: "Présentez-vous à l'accueil, et nous nous occupons de la suite.",
+        receptionAlt: 'Accueil de la clinique',
+        phoneLabel: 'Vous ne nous trouvez pas ?',
+        phoneNote: 'Nous répondrons avec plaisir et vous guiderons.',
+        footer: 'Demo Clinic — Clinic Navigation Template',
+        lightboxClose: 'Fermer'
+      },
+      routes: {
+        a: { title: "Rejoignez l'entrée A", desc: 'Depuis la rue principale — l\'entrée principale, marquée d\'un grand « A ».', alt: 'Entrée A depuis la rue principale', sub: "Cinq pas de l'entrée A à la porte de la clinique." },
+        b: { title: "Rejoignez l'entrée B", desc: 'Sur le côté du bâtiment, près du supermarché — signalétique « B » avec une flèche pointant vers l\'intérieur.', alt: 'Entrée B près du supermarché', sub: "Trois pas de l'entrée B à la porte de la clinique — directement jusqu'à l'ascenseur." },
+        c: { title: "Sortez du centre commercial vers l'entrée A", desc: 'Depuis le centre commercial — en sortant, tournez à gauche ; l\'entrée sera un peu plus loin (la même entrée A, de l\'autre côté).', alt: "Sortie du centre commercial vers l'entrée A", sub: "Six pas de la sortie du centre commercial à la porte de la clinique." }
       }
     }
   };
