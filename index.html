@@ -231,20 +231,42 @@
   }
   .parking-item-title{font-size:14.5px;font-weight:600;}
   .parking-item-desc{font-size:13.5px;color:var(--ink-soft);line-height:1.5;margin-top:2px;}
-  .parking-links{
-    margin-top:4px;
+  .parking-item-meta{
+    margin-top:6px;
     display:flex;
+    align-items:center;
     flex-wrap:wrap;
-    gap:6px;
-    font-size:13px;
+    gap:8px;
   }
-  .parking-links a{
+  .parking-item-price{
+    display:inline-block;
+    padding:2px 9px;
+    border-radius:999px;
+    background:var(--accent-soft);
     color:var(--accent-2);
+    font-size:12.5px;
     font-weight:600;
-    text-decoration:none;
   }
-  .parking-links a:hover{text-decoration:underline;}
-  .parking-links span{color:var(--ink-soft);}
+  .parking-item-actions{
+    display:flex;
+    gap:6px;
+  }
+  .icon-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:30px;height:30px;
+    flex:0 0 auto;
+    border-radius:50%;
+    background:var(--surface);
+    color:var(--ink-soft);
+    border:1px solid var(--line);
+    text-decoration:none;
+    transition:border-color .15s ease, background .15s ease, color .15s ease, transform .15s ease;
+  }
+  .icon-btn:hover{border-color:var(--accent);background:var(--accent-soft);color:var(--accent-2);}
+  .icon-btn:active{transform:translateY(1px);}
+  .icon-btn svg{width:15px;height:15px;}
 
   .nav-buttons{
     display:flex;
@@ -297,6 +319,21 @@
     gap:8px;
   }
   .transit-note svg{flex:0 0 auto;margin-top:1px;}
+  .bus-line-badge{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:24px;
+    height:22px;
+    padding:0 7px;
+    margin-inline:2px;
+    border-radius:999px;
+    background:var(--accent);
+    color:var(--bg);
+    font-weight:700;
+    font-size:12.5px;
+    font-variant-numeric:tabular-nums;
+  }
 
   .flow-cta{
     text-align:center;
@@ -630,21 +667,81 @@
           <div class="parking-item">
             <div class="parking-item-title" data-i18n="parking1Title">חניון קניון העיר</div>
             <div class="parking-item-desc" data-i18n="parking1Desc">רחוב הדוגמה 2 — חניון מקורה, כ־5 דקות הליכה. האפשרות הכי בטוחה למצוא מקום.</div>
-            <div class="parking-links">
-              <a class="btn btn-secondary btn-sm" href="https://waze.com/ul?q=%D7%9B%D7%99%D7%9B%D7%A8%20%D7%A8%D7%91%D7%99%D7%9F%20%D7%AA%D7%9C%20%D7%90%D7%91%D7%99%D7%91&navigate=yes" target="_blank" rel="noopener">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 11l18-8-8 18-2-8-8-2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
-                <span data-i18n="wazeParking">Waze לחניון</span>
-              </a>
-              <a class="btn btn-secondary btn-sm" href="https://www.google.com/maps/dir/?api=1&destination=%D7%9B%D7%99%D7%9B%D7%A8%20%D7%A8%D7%91%D7%99%D7%9F%20%D7%AA%D7%9C%20%D7%90%D7%91%D7%99%D7%91" target="_blank" rel="noopener">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 22s7-7.58 7-13A7 7 0 0 0 5 9c0 5.42 7 13 7 13Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="9" r="2.4" stroke="currentColor" stroke-width="2"/></svg>
-                <span data-i18n="gmapsParking">Google Maps לחניון</span>
-              </a>
+            <div class="parking-item-meta">
+              <div class="parking-item-price" data-i18n="parking1Price">8 ₪ לשעה (שעתיים ראשונות)</div>
+              <div class="parking-item-actions">
+                <a class="icon-btn" href="https://waze.com/ul?q=%D7%9B%D7%99%D7%9B%D7%A8%20%D7%A8%D7%91%D7%99%D7%9F%20%D7%AA%D7%9C%20%D7%90%D7%91%D7%99%D7%91&navigate=yes" target="_blank" rel="noopener" aria-label="Waze לחניון" data-i18n-aria="wazeParking">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 11l18-8-8 18-2-8-8-2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+                </a>
+                <a class="icon-btn" href="https://www.google.com/maps/dir/?api=1&destination=%D7%9B%D7%99%D7%9B%D7%A8%20%D7%A8%D7%91%D7%99%D7%9F%20%D7%AA%D7%9C%20%D7%90%D7%91%D7%99%D7%91" target="_blank" rel="noopener" aria-label="Google Maps לחניון" data-i18n-aria="gmapsParking">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 22s7-7.58 7-13A7 7 0 0 0 5 9c0 5.42 7 13 7 13Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="9" r="2.4" stroke="currentColor" stroke-width="2"/></svg>
+                </a>
+              </div>
             </div>
           </div>
 
           <div class="parking-item">
-            <div class="parking-item-title" data-i18n="parking2Title">חניה ברחוב בתשלום</div>
-            <div class="parking-item-desc" data-i18n="parking2Desc">לאורך הרחוב והרחובות הסמוכים — אזור כחול־לבן, תשלום באפליקציית פנגו או סלופארק.</div>
+            <div class="parking-item-title" data-i18n="parking2Title">חניון רחוב הדוגמה 3</div>
+            <div class="parking-item-desc" data-i18n="parking2Desc">פתוח 24 שעות ביממה, כ־7 דקות הליכה מהמרפאה.</div>
+            <div class="parking-item-meta">
+              <div class="parking-item-price" data-i18n="parking2Price">10 ₪ לשעה</div>
+              <div class="parking-item-actions">
+                <a class="icon-btn" href="https://waze.com/ul?q=%D7%9B%D7%99%D7%9B%D7%A8%20%D7%A8%D7%91%D7%99%D7%9F%20%D7%AA%D7%9C%20%D7%90%D7%91%D7%99%D7%91&navigate=yes" target="_blank" rel="noopener" aria-label="Waze לחניון" data-i18n-aria="wazeParking">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 11l18-8-8 18-2-8-8-2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+                </a>
+                <a class="icon-btn" href="https://www.google.com/maps/dir/?api=1&destination=%D7%9B%D7%99%D7%9B%D7%A8%20%D7%A8%D7%91%D7%99%D7%9F%20%D7%AA%D7%9C%20%D7%90%D7%91%D7%99%D7%91" target="_blank" rel="noopener" aria-label="Google Maps לחניון" data-i18n-aria="gmapsParking">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 22s7-7.58 7-13A7 7 0 0 0 5 9c0 5.42 7 13 7 13Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="9" r="2.4" stroke="currentColor" stroke-width="2"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="parking-item">
+            <div class="parking-item-title" data-i18n="parking3Title">מגרש חניה חינם ברחוב הדוגמה 4</div>
+            <div class="parking-item-desc" data-i18n="parking3Desc">מגרש חניה קטן מאחורי הבניינים הסמוכים, ללא תשלום.</div>
+            <div class="parking-item-meta">
+              <div class="parking-item-price" data-i18n="parking3Price">חינם</div>
+              <div class="parking-item-actions">
+                <a class="icon-btn" href="https://waze.com/ul?q=%D7%9B%D7%99%D7%9B%D7%A8%20%D7%A8%D7%91%D7%99%D7%9F%20%D7%AA%D7%9C%20%D7%90%D7%91%D7%99%D7%91&navigate=yes" target="_blank" rel="noopener" aria-label="Waze לחניון" data-i18n-aria="wazeParking">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 11l18-8-8 18-2-8-8-2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+                </a>
+                <a class="icon-btn" href="https://www.google.com/maps/dir/?api=1&destination=%D7%9B%D7%99%D7%9B%D7%A8%20%D7%A8%D7%91%D7%99%D7%9F%20%D7%AA%D7%9C%20%D7%90%D7%91%D7%99%D7%91" target="_blank" rel="noopener" aria-label="Google Maps לחניון" data-i18n-aria="gmapsParking">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 22s7-7.58 7-13A7 7 0 0 0 5 9c0 5.42 7 13 7 13Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="9" r="2.4" stroke="currentColor" stroke-width="2"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="parking-item">
+            <div class="parking-item-title" data-i18n="parking4Title">מגרש חניה ברחוב הדוגמה 5</div>
+            <div class="parking-item-desc" data-i18n="parking4Desc">מגרש חניה גדול, סימון כחול־לבן, תשלום באפליקציית פנגו או סלופארק.</div>
+            <div class="parking-item-meta">
+              <div class="parking-item-price" data-i18n="parking4Price">לפי תעריף עירוני (כ־6 ₪ לשעה)</div>
+              <div class="parking-item-actions">
+                <a class="icon-btn" href="https://waze.com/ul?q=%D7%9B%D7%99%D7%9B%D7%A8%20%D7%A8%D7%91%D7%99%D7%9F%20%D7%AA%D7%9C%20%D7%90%D7%91%D7%99%D7%91&navigate=yes" target="_blank" rel="noopener" aria-label="Waze לחניון" data-i18n-aria="wazeParking">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 11l18-8-8 18-2-8-8-2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+                </a>
+                <a class="icon-btn" href="https://www.google.com/maps/dir/?api=1&destination=%D7%9B%D7%99%D7%9B%D7%A8%20%D7%A8%D7%91%D7%99%D7%9F%20%D7%AA%D7%9C%20%D7%90%D7%91%D7%99%D7%91" target="_blank" rel="noopener" aria-label="Google Maps לחניון" data-i18n-aria="gmapsParking">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 22s7-7.58 7-13A7 7 0 0 0 5 9c0 5.42 7 13 7 13Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="9" r="2.4" stroke="currentColor" stroke-width="2"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="parking-item">
+            <div class="parking-item-title" data-i18n="parking5Title">חניה ברחוב בתשלום</div>
+            <div class="parking-item-desc" data-i18n="parking5Desc">לאורך הרחוב והרחובות הסמוכים — אזור כחול־לבן, תשלום באפליקציית פנגו או סלופארק.</div>
+            <div class="parking-item-meta">
+              <div class="parking-item-price" data-i18n="parking5Price">לפי תעריף עירוני (כ־6 ₪ לשעה)</div>
+              <div class="parking-item-actions">
+                <a class="icon-btn" href="https://waze.com/ul?q=%D7%9B%D7%99%D7%9B%D7%A8%20%D7%A8%D7%91%D7%99%D7%9F%20%D7%AA%D7%9C%20%D7%90%D7%91%D7%99%D7%91&navigate=yes" target="_blank" rel="noopener" aria-label="Waze לחניון" data-i18n-aria="wazeParking">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 11l18-8-8 18-2-8-8-2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></svg>
+                </a>
+                <a class="icon-btn" href="https://www.google.com/maps/dir/?api=1&destination=%D7%9B%D7%99%D7%9B%D7%A8%20%D7%A8%D7%91%D7%99%D7%9F%20%D7%AA%D7%9C%20%D7%90%D7%91%D7%99%D7%91" target="_blank" rel="noopener" aria-label="Google Maps לחניון" data-i18n-aria="gmapsParking">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 22s7-7.58 7-13A7 7 0 0 0 5 9c0 5.42 7 13 7 13Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="9" r="2.4" stroke="currentColor" stroke-width="2"/></svg>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -656,7 +753,11 @@
             <circle cx="8" cy="13.5" r="1.1" fill="var(--accent)"/>
             <circle cx="16" cy="13.5" r="1.1" fill="var(--accent)"/>
           </svg>
-          <span data-i18n="transitNote">מגיעים בתחבורה ציבורית? קווי אוטובוס רבים עוצרים במרחק הליכה קצרה מהמרפאה.</span>
+          <span>
+            <span data-i18n="transitNotePrefix">מגיעים בתחבורה ציבורית? קווי אוטובוס:</span>
+            <span class="bus-line-badge">5</span><span class="bus-line-badge">12</span><span class="bus-line-badge">24</span>
+            <span data-i18n="transitNoteSuffix">עוצרים במרחק הליכה קצרה מהמרפאה.</span>
+          </span>
         </div>
       </div>
     </div>
@@ -811,11 +912,23 @@
         parkingHeader: 'חניה בסביבה',
         parking1Title: 'חניון קניון העיר',
         parking1Desc: 'רחוב הדוגמה 2 — חניון מקורה, כ־5 דקות הליכה. האפשרות הכי בטוחה למצוא מקום.',
+        parking1Price: '8 ₪ לשעה (שעתיים ראשונות)',
         wazeParking: 'Waze לחניון',
         gmapsParking: 'Google Maps לחניון',
-        parking2Title: 'חניה ברחוב בתשלום',
-        parking2Desc: 'לאורך הרחוב והרחובות הסמוכים — אזור כחול־לבן, תשלום באפליקציית פנגו או סלופארק.',
-        transitNote: 'מגיעים בתחבורה ציבורית? קווי אוטובוס רבים עוצרים במרחק הליכה קצרה מהמרפאה.',
+        parking2Title: 'חניון רחוב הדוגמה 3',
+        parking2Desc: 'פתוח 24 שעות ביממה, כ־7 דקות הליכה מהמרפאה.',
+        parking2Price: '10 ₪ לשעה',
+        parking3Title: 'מגרש חניה חינם ברחוב הדוגמה 4',
+        parking3Desc: 'מגרש חניה קטן מאחורי הבניינים הסמוכים, ללא תשלום.',
+        parking3Price: 'חינם',
+        parking4Title: 'מגרש חניה ברחוב הדוגמה 5',
+        parking4Desc: 'מגרש חניה גדול, סימון כחול־לבן, תשלום באפליקציית פנגו או סלופארק.',
+        parking4Price: 'לפי תעריף עירוני (כ־6 ₪ לשעה)',
+        parking5Title: 'חניה ברחוב בתשלום',
+        parking5Desc: 'לאורך הרחוב והרחובות הסמוכים — אזור כחול־לבן, תשלום באפליקציית פנגו או סלופארק.',
+        parking5Price: 'לפי תעריף עירוני (כ־6 ₪ לשעה)',
+        transitNotePrefix: 'מגיעים בתחבורה ציבורית? קווי אוטובוס:',
+        transitNoteSuffix: 'עוצרים במרחק הליכה קצרה מהמרפאה.',
         routeH2: 'מאיפה אתם מגיעים?',
         routeSub: 'בחרו נקודת התחלה, ונראה לכם את הנתיב המדויק מהיכן שאתם עומדים.',
         routeGroupAria: 'בחירת כניסה',
@@ -870,11 +983,23 @@
         parkingHeader: 'Parking nearby',
         parking1Title: 'City Mall parking',
         parking1Desc: '2 Example St — covered parking, about a 5-minute walk. The safest bet for finding a spot.',
+        parking1Price: '₪8/hour (first two hours)',
         wazeParking: 'Waze to the parking lot',
         gmapsParking: 'Google Maps to the parking lot',
-        parking2Title: 'Paid street parking',
-        parking2Desc: 'Along the street and nearby streets — blue-and-white zone, pay via the Pango or Cellopark app.',
-        transitNote: 'Coming by public transit? Many bus lines stop a short walk from the clinic.',
+        parking2Title: 'Example St 3 garage',
+        parking2Desc: 'Open 24 hours a day, about a 7-minute walk from the clinic.',
+        parking2Price: '₪10/hour',
+        parking3Title: 'Free lot at Example St 4',
+        parking3Desc: 'Small parking lot behind the nearby buildings, no charge.',
+        parking3Price: 'Free',
+        parking4Title: 'Example St 5 lot',
+        parking4Desc: 'Large parking lot, blue-and-white zone, pay via the Pango or Cellopark app.',
+        parking4Price: 'Municipal rate (about ₪6/hour)',
+        parking5Title: 'Paid street parking',
+        parking5Desc: 'Along the street and nearby streets — blue-and-white zone, pay via the Pango or Cellopark app.',
+        parking5Price: 'Municipal rate (about ₪6/hour)',
+        transitNotePrefix: 'Coming by public transit? Bus lines:',
+        transitNoteSuffix: 'stop a short walk from the clinic.',
         routeH2: 'Where are you coming from?',
         routeSub: "Pick your starting point, and we'll show you the exact route from where you are.",
         routeGroupAria: 'Choose entrance',
@@ -929,11 +1054,23 @@
         parkingHeader: 'Парковка поблизости',
         parking1Title: 'Парковка Городского ТЦ',
         parking1Desc: 'ул. Примерная, 2 — крытая парковка, около 5 минут пешком. Самый надёжный способ найти место.',
+        parking1Price: '8 ₪/час (первые два часа)',
         wazeParking: 'Waze к парковке',
         gmapsParking: 'Google Maps к парковке',
-        parking2Title: 'Платная парковка на улице',
-        parking2Desc: 'Вдоль улицы и соседних улиц — бело-синяя зона, оплата через приложение Pango или Cellopark.',
-        transitNote: 'Едете на общественном транспорте? Многие автобусы останавливаются в нескольких минутах ходьбы от клиники.',
+        parking2Title: 'Парковка на ул. Примерная, 3',
+        parking2Desc: 'Открыта 24 часа в сутки, около 7 минут пешком от клиники.',
+        parking2Price: '10 ₪/час',
+        parking3Title: 'Бесплатная парковка на ул. Примерная, 4',
+        parking3Desc: 'Небольшая парковка за соседними зданиями, бесплатно.',
+        parking3Price: 'Бесплатно',
+        parking4Title: 'Парковка на ул. Примерная, 5',
+        parking4Desc: 'Большая парковка, бело-синяя зона, оплата через приложение Pango или Cellopark.',
+        parking4Price: 'По городскому тарифу (около 6 ₪/час)',
+        parking5Title: 'Платная парковка на улице',
+        parking5Desc: 'Вдоль улицы и соседних улиц — бело-синяя зона, оплата через приложение Pango или Cellopark.',
+        parking5Price: 'По городскому тарифу (около 6 ₪/час)',
+        transitNotePrefix: 'Едете на общественном транспорте? Автобусы №:',
+        transitNoteSuffix: 'останавливаются в нескольких минутах ходьбы от клиники.',
         routeH2: 'Откуда вы приезжаете?',
         routeSub: 'Выберите точку отправления, и мы покажем точный маршрут оттуда, где вы находитесь.',
         routeGroupAria: 'Выбор входа',
@@ -988,11 +1125,23 @@
         parkingHeader: 'مواقف قريبة',
         parking1Title: 'موقف مول المدينة',
         parking1Desc: 'شارع المثال 2 — موقف مسقوف، على بعد حوالي 5 دقائق سيرًا. الخيار الأكثر أمانًا لإيجاد مكان.',
+        parking1Price: '8 ₪ للساعة (أول ساعتين)',
         wazeParking: 'Waze إلى الموقف',
         gmapsParking: 'خرائط Google إلى الموقف',
-        parking2Title: 'وقوف مدفوع في الشارع',
-        parking2Desc: 'على طول الشارع والشوارع المجاورة — منطقة زرقاء وبيضاء، الدفع عبر تطبيق Pango أو Cellopark.',
-        transitNote: 'قادمون بالمواصلات العامة؟ تتوقف خطوط حافلات كثيرة على مسافة قريبة سيرًا من العيادة.',
+        parking2Title: 'موقف شارع المثال 3',
+        parking2Desc: 'مفتوح 24 ساعة، على بعد حوالي 7 دقائق سيرًا من العيادة.',
+        parking2Price: '10 ₪ للساعة',
+        parking3Title: 'موقف مجاني في شارع المثال 4',
+        parking3Desc: 'موقف صغير خلف المباني المجاورة، بدون رسوم.',
+        parking3Price: 'مجاني',
+        parking4Title: 'موقف شارع المثال 5',
+        parking4Desc: 'موقف كبير، منطقة زرقاء وبيضاء، الدفع عبر تطبيق Pango أو Cellopark.',
+        parking4Price: 'حسب التعريفة البلدية (حوالي 6 ₪ للساعة)',
+        parking5Title: 'وقوف مدفوع في الشارع',
+        parking5Desc: 'على طول الشارع والشوارع المجاورة — منطقة زرقاء وبيضاء، الدفع عبر تطبيق Pango أو Cellopark.',
+        parking5Price: 'حسب التعريفة البلدية (حوالي 6 ₪ للساعة)',
+        transitNotePrefix: 'قادمون بالمواصلات العامة؟ خطوط الحافلات:',
+        transitNoteSuffix: 'تتوقف على مسافة قريبة سيرًا من العيادة.',
         routeH2: 'من أين أنتم قادمون؟',
         routeSub: 'اختاروا نقطة انطلاقكم، وسنعرض لكم المسار الدقيق من مكانكم.',
         routeGroupAria: 'اختيار المدخل',
@@ -1047,11 +1196,23 @@
         parkingHeader: 'በአቅራቢያ ያለ ማቆሚያ',
         parking1Title: 'የከተማ ሞል ማቆሚያ',
         parking1Desc: '2 ምሳሌ ጎዳና — የተሸፈነ ማቆሚያ፣ በእግር 5 ደቂቃ ያህል። ቦታ ለማግኘት በጣም አስተማማኝ አማራጭ።',
+        parking1Price: '8 ₪ በሰዓት (የመጀመሪያዎቹ ሁለት ሰዓታት)',
         wazeParking: 'ወደ ማቆሚያው Waze',
         gmapsParking: 'ወደ ማቆሚያው Google Maps',
-        parking2Title: 'በክፍያ የመንገድ ማቆሚያ',
-        parking2Desc: 'በመንገዱ እና በአጎራባች መንገዶች ላይ — ሰማያዊ እና ነጭ ዞን፣ በ Pango ወይም Cellopark መተግበሪያ ይክፈሉ።',
-        transitNote: 'በሕዝብ ማመላለሻ እየመጡ ነው? ብዙ የአውቶብስ መስመሮች ከክሊኒኩ በእግር ትንሽ ርቀት ላይ ያቆማሉ።',
+        parking2Title: 'በ3 ምሳሌ ጎዳና ማቆሚያ',
+        parking2Desc: 'ለ24 ሰዓት ክፍት፣ ከክሊኒኩ በእግር 7 ደቂቃ ያህል።',
+        parking2Price: '10 ₪ በሰዓት',
+        parking3Title: 'በ4 ምሳሌ ጎዳና ውስጥ ያለ ነፃ ማቆሚያ',
+        parking3Desc: 'ከአጎራባች ህንፃዎች ጀርባ ያለ ትንሽ ማቆሚያ፣ ክፍያ የለውም።',
+        parking3Price: 'ነፃ',
+        parking4Title: 'በ5 ምሳሌ ጎዳና ማቆሚያ',
+        parking4Desc: 'ትልቅ ማቆሚያ፣ ሰማያዊ እና ነጭ ዞን፣ በ Pango ወይም Cellopark መተግበሪያ ይክፈሉ።',
+        parking4Price: 'በማዘጋጃ ቤት ዋጋ (ገደማ 6 ₪ በሰዓት)',
+        parking5Title: 'በክፍያ የመንገድ ማቆሚያ',
+        parking5Desc: 'በመንገዱ እና በአጎራባች መንገዶች ላይ — ሰማያዊ እና ነጭ ዞን፣ በ Pango ወይም Cellopark መተግበሪያ ይክፈሉ።',
+        parking5Price: 'በማዘጋጃ ቤት ዋጋ (ገደማ 6 ₪ በሰዓት)',
+        transitNotePrefix: 'በሕዝብ ማመላለሻ እየመጡ ነው? የአውቶብስ መስመሮች:',
+        transitNoteSuffix: 'ከክሊኒኩ በእግር ትንሽ ርቀት ላይ ያቆማሉ።',
         routeH2: 'ከየት እየመጡ ነው?',
         routeSub: 'መነሻ ነጥብዎን ይምረጡ፣ እኛም ካሉበት ትክክለኛውን መንገድ እናሳይዎታለን።',
         routeGroupAria: 'መግቢያ ይምረጡ',
@@ -1106,11 +1267,23 @@
         parkingHeader: 'ኣብ ጥቓ ዘሎ መዕረፊ መኪና',
         parking1Title: 'መዕረፊ መኪና ናይ ከተማ ሞል',
         parking1Desc: '2 ኣብነት ጎደና — ዝተሸፈነ መዕረፊ መኪና፣ ኣስታት 5 ደቒቕ ብእግሪ። ቦታ ንምርካብ እቲ ዝበለጸ ውሑስ ኣማራጺ።',
+        parking1Price: '8 ₪ ንሰዓት (ናይ መጀመርታ ክልተ ሰዓታት)',
         wazeParking: 'ናብ መዕረፊ መኪና Waze',
         gmapsParking: 'ናብ መዕረፊ መኪና Google Maps',
-        parking2Title: 'ብክፍሊት ኣብ ጎደና ዘሎ መዕረፊ',
-        parking2Desc: 'ኣብ ጎደናን ጎረባብቲ ጎደናታትን — ሰማያውን ጻዕዳን ዞባ፣ ብመተግበሪ Pango ወይ Cellopark ይኽፈል።',
-        transitNote: 'ብሓባራዊ መጓዓዓዚ ትመጹ ኣሎኹም? ብዙሓት መስመራት ኣውቶቡስ ካብ ክሊኒክ ብእግሪ ሓጺር ርሕቀት ይቆማ።',
+        parking2Title: 'መዕረፊ ኣብ 3 ኣብነት ጎደና',
+        parking2Desc: 'ን24 ሰዓት ክፉት፣ ካብ ክሊኒክ ኣስታት 7 ደቒቕ ብእግሪ።',
+        parking2Price: '10 ₪ ንሰዓት',
+        parking3Title: 'ብናጻ መዕረፊ ኣብ 4 ኣብነት ጎደና',
+        parking3Desc: 'ንእሽቶ መዕረፊ መኪና ድሕሪ ጎረባብቲ ህንጻታት፣ ብዘይ ክፍሊት።',
+        parking3Price: 'ብናጻ',
+        parking4Title: 'መዕረፊ ኣብ 5 ኣብነት ጎደና',
+        parking4Desc: 'ዓቢ መዕረፊ መኪና፣ ሰማያውን ጻዕዳን ዞባ፣ ብመተግበሪ Pango ወይ Cellopark ይኽፈል።',
+        parking4Price: 'ብመዘጋጃ ቤት ዋጋ (ኣስታት 6 ₪ ንሰዓት)',
+        parking5Title: 'ብክፍሊት ኣብ ጎደና ዘሎ መዕረፊ',
+        parking5Desc: 'ኣብ ጎደናን ጎረባብቲ ጎደናታትን — ሰማያውን ጻዕዳን ዞባ፣ ብመተግበሪ Pango ወይ Cellopark ይኽፈል።',
+        parking5Price: 'ብመዘጋጃ ቤት ዋጋ (ኣስታት 6 ₪ ንሰዓት)',
+        transitNotePrefix: 'ብሓባራዊ መጓዓዓዚ ትመጹ ኣሎኹም? መስመራት ኣውቶቡስ:',
+        transitNoteSuffix: 'ካብ ክሊኒክ ብእግሪ ሓጺር ርሕቀት ይቆማ።',
         routeH2: 'ካበይ ኢኹም ትመጹ ዘሎኹም?',
         routeSub: 'መበገሲ ነጥብኹም ምረጹ፣ ካብ ዘለኹምዎ እቲ ልክዕ መገዲ ክንሕብረኩም ኢና።',
         routeGroupAria: 'መእተዊ ምረጹ',
@@ -1165,11 +1338,23 @@
         parkingHeader: 'Parking à proximité',
         parking1Title: 'Parking du centre commercial',
         parking1Desc: "2 Rue de l'Exemple — parking couvert, à environ 5 minutes à pied. L'option la plus sûre pour trouver une place.",
+        parking1Price: '8 ₪/heure (les deux premières heures)',
         wazeParking: 'Waze vers le parking',
         gmapsParking: 'Google Maps vers le parking',
-        parking2Title: 'Stationnement payant dans la rue',
-        parking2Desc: "Le long de la rue et des rues avoisinantes — zone bleue et blanche, paiement via l'application Pango ou Cellopark.",
-        transitNote: "Vous venez en transports en commun ? De nombreuses lignes de bus s'arrêtent à quelques minutes à pied de la clinique.",
+        parking2Title: "Parking Rue de l'Exemple 3",
+        parking2Desc: "Ouvert 24h/24, à environ 7 minutes à pied de la clinique.",
+        parking2Price: '10 ₪/heure',
+        parking3Title: "Parking gratuit Rue de l'Exemple 4",
+        parking3Desc: "Petit parking derrière les immeubles voisins, gratuit.",
+        parking3Price: 'Gratuit',
+        parking4Title: "Parking Rue de l'Exemple 5",
+        parking4Desc: "Grand parking, zone bleue et blanche, paiement via l'application Pango ou Cellopark.",
+        parking4Price: 'Tarif municipal (environ 6 ₪/heure)',
+        parking5Title: 'Stationnement payant dans la rue',
+        parking5Desc: "Le long de la rue et des rues avoisinantes — zone bleue et blanche, paiement via l'application Pango ou Cellopark.",
+        parking5Price: 'Tarif municipal (environ 6 ₪/heure)',
+        transitNotePrefix: 'Vous venez en transports en commun ? Lignes de bus :',
+        transitNoteSuffix: "s'arrêtent à quelques minutes à pied de la clinique.",
         routeH2: "D'où venez-vous ?",
         routeSub: "Choisissez votre point de départ, et nous vous montrerons l'itinéraire exact depuis votre position.",
         routeGroupAria: "Choix de l'entrée",
