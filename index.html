@@ -1,16 +1,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>איך מגיעים אלינו — Demo</title>
+<title>איך מגיעים אלינו — מרפאת לביא</title>
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="robots" content="noindex, nofollow">
-<meta property="og:title" content="Demo Clinic — איך מגיעים אלינו">
+<meta property="og:title" content="מרפאת לביא — איך מגיעים אלינו">
 <meta property="og:description" content="דוגמה חיה: מדריך קצר מהבית עד לדלת המרפאה, כולל ניווט וההליכה בתוך הבניין צעד־צעד.">
 <meta property="og:image" content="https://shwartzadam.github.io/clinic-navigation-demo/photos/logo-placeholder.svg">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://shwartzadam.github.io/clinic-navigation-demo/">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Demo Clinic — איך מגיעים אלינו">
+<meta name="twitter:title" content="מרפאת לביא — איך מגיעים אלינו">
 <meta name="twitter:description" content="דוגמה חיה: מדריך קצר מהבית עד לדלת המרפאה, כולל ניווט וההליכה בתוך הבניין צעד־צעד.">
 <meta name="twitter:image" content="https://shwartzadam.github.io/clinic-navigation-demo/photos/logo-placeholder.svg">
 <style>
@@ -58,7 +58,7 @@
     direction:ltr;
     justify-content:flex-end;
     padding-top:16px;
-    margin-bottom:-4px;
+    margin-bottom:12px;
   }
   .lang-btn{
     display:inline-flex;
@@ -115,6 +115,8 @@
     justify-content:center;
     gap:16px;
     flex-wrap:wrap;
+    direction:ltr;
+    margin-bottom:16px;
   }
   .doctor-photo{
     width:72px;
@@ -124,12 +126,34 @@
     object-position:50% 25%;
     border:2px solid var(--brand);
     flex:0 0 auto;
+    order:3;
   }
-  .logo-mark{
-    display:block;
-    width:min(300px, 60%);
-    height:auto;
-    margin:0;
+  .logo-icon-img{
+    width:clamp(48px, 14vw, 64px);
+    height:clamp(48px, 14vw, 64px);
+    flex:0 0 auto;
+    order:1;
+  }
+  .logo-text{
+    text-align:center;
+    order:2;
+    flex:1 1 140px;
+    min-width:0;
+  }
+  .logo-name{
+    font-family:'Frank Ruhl Libre', 'Times New Roman', serif;
+    font-weight:700;
+    font-size:clamp(18px, 5.5vw, 28px);
+    line-height:1.15;
+    color:var(--ink);
+  }
+  .logo-tagline{
+    font-size:clamp(10.5px, 3vw, 13px);
+    font-weight:600;
+    letter-spacing:.03em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin-top:2px;
   }
   .eyebrow{
     font-size:13px;
@@ -544,10 +568,13 @@
 
   <header class="page">
     <div class="header-brand">
-      <img class="doctor-photo" src="photos/avatar-placeholder.svg" alt="Demo Clinic" data-i18n-alt="doctorAlt">
-      <img class="logo-mark" src="photos/logo-placeholder.svg" alt="Demo Clinic" data-i18n-alt="doctorAlt">
+      <img class="doctor-photo" src="photos/avatar-placeholder.svg" alt="ד״ר עדי לביא" data-i18n-alt="doctorAlt">
+      <img class="logo-icon-img" src="photos/clinic-icon.svg" alt="" aria-hidden="true">
+      <div class="logo-text">
+        <div class="logo-name" data-i18n="clinicName">מרפאת לביא</div>
+        <div class="logo-tagline" data-i18n="eyebrow">ד״ר עדי לביא · רפואת משפחה</div>
+      </div>
     </div>
-    <div class="eyebrow" data-i18n="eyebrow">מרפאת דמו</div>
     <p class="lede" data-i18n="lede">מדריך קצר מהבית עד לדלת המרפאה — כולל ניווט, וההליכה בתוך הבניין צעד־צעד.</p>
   </header>
 
@@ -743,7 +770,7 @@
   </section>
 
   <footer data-i18n="footer">
-    Demo Clinic — Clinic Navigation Template
+    מרפאת לביא
   </footer>
 
 </div>
@@ -769,9 +796,10 @@
   const I18N = {
     he: {
       t: {
-        pageTitle: 'איך מגיעים אלינו — Demo',
-        doctorAlt: 'Demo Clinic',
-        eyebrow: 'מרפאת דמו',
+        pageTitle: 'איך מגיעים אלינו — מרפאת לביא',
+        doctorAlt: 'ד״ר עדי לביא',
+        clinicName: 'מרפאת לביא',
+        eyebrow: 'ד״ר עדי לביא · רפואת משפחה',
         lede: 'מדריך קצר מהבית עד לדלת המרפאה — כולל ניווט, וההליכה בתוך הבניין צעד־צעד.',
         flowH2: 'איך מגיעים אלינו',
         flowSub: 'מדריך צעד־צעד מהכניסה שלכם עד דלת המרפאה',
@@ -816,7 +844,7 @@
         receptionAlt: 'דלפק הקבלה של המרפאה',
         phoneLabel: 'לא מוצאים אותנו?',
         phoneNote: 'נענה בשמחה ונדריך אתכם',
-        footer: 'Demo Clinic — Clinic Navigation Template',
+        footer: 'מרפאת לביא',
         lightboxClose: 'סגירה'
       },
       routes: {
@@ -827,9 +855,10 @@
     },
     en: {
       t: {
-        pageTitle: 'How to Reach Us — Demo',
-        doctorAlt: 'Demo Clinic',
-        eyebrow: 'Demo Clinic',
+        pageTitle: 'How to Reach Us — Lavi Clinic',
+        doctorAlt: 'Dr. Adi Lavi',
+        clinicName: 'Lavi Clinic',
+        eyebrow: 'Dr. Adi Lavi · Family Medicine',
         lede: 'A quick guide from your home to the clinic door — including directions, and the walk through the building step by step.',
         flowH2: 'How to Reach Us',
         flowSub: 'Step-by-step guide from your entrance to the clinic door',
@@ -874,7 +903,7 @@
         receptionAlt: 'Clinic reception desk',
         phoneLabel: "Can't find us?",
         phoneNote: "We'll gladly answer and guide you.",
-        footer: 'Demo Clinic — Clinic Navigation Template',
+        footer: 'Lavi Clinic',
         lightboxClose: 'Close'
       },
       routes: {
@@ -885,9 +914,10 @@
     },
     ru: {
       t: {
-        pageTitle: 'Как до нас добраться — Demo',
-        doctorAlt: 'Демо-клиника',
-        eyebrow: 'Демо-клиника',
+        pageTitle: 'Как до нас добраться — Клиника Лави',
+        doctorAlt: 'Д-р Ади Лави',
+        clinicName: 'Клиника Лави',
+        eyebrow: 'Д-р Ади Лави · Семейная медицина',
         lede: 'Краткое руководство от дома до двери клиники — включая маршрут и проход по зданию шаг за шагом.',
         flowH2: 'Как до нас добраться',
         flowSub: 'Пошаговое руководство от вашего входа до двери клиники',
@@ -932,7 +962,7 @@
         receptionAlt: 'Стойка регистрации клиники',
         phoneLabel: 'Не можете нас найти?',
         phoneNote: 'Мы с радостью ответим и подскажем дорогу.',
-        footer: 'Demo Clinic — Clinic Navigation Template',
+        footer: 'Клиника Лави',
         lightboxClose: 'Закрыть'
       },
       routes: {
@@ -943,9 +973,10 @@
     },
     ar: {
       t: {
-        pageTitle: 'كيف تصلون إلينا — Demo',
-        doctorAlt: 'عيادة تجريبية',
-        eyebrow: 'عيادة تجريبية',
+        pageTitle: 'كيف تصلون إلينا — عيادة لافي',
+        doctorAlt: 'د. عدي لافي',
+        clinicName: 'عيادة لافي',
+        eyebrow: 'د. عدي لافي · طب الأسرة',
         lede: 'دليل قصير من المنزل حتى باب العيادة — يشمل التوجيه، والمشي داخل المبنى خطوة بخطوة.',
         flowH2: 'كيف تصلون إلينا',
         flowSub: 'دليل خطوة بخطوة من مدخلكم حتى باب العيادة',
@@ -990,7 +1021,7 @@
         receptionAlt: 'طاولة استقبال العيادة',
         phoneLabel: 'لا تجدوننا؟',
         phoneNote: 'سنسعد بالرد وإرشادكم.',
-        footer: 'Demo Clinic — Clinic Navigation Template',
+        footer: 'عيادة لافي',
         lightboxClose: 'إغلاق'
       },
       routes: {
@@ -1001,9 +1032,10 @@
     },
     am: {
       t: {
-        pageTitle: 'ወደ እኛ እንዴት እንደሚደርሱ — Demo',
-        doctorAlt: 'ሙከራ ክሊኒክ',
-        eyebrow: 'ሙከራ ክሊኒክ',
+        pageTitle: 'ወደ እኛ እንዴት እንደሚደርሱ — ላቪ ክሊኒክ',
+        doctorAlt: 'ዶ/ር አዲ ላቪ',
+        clinicName: 'ላቪ ክሊኒክ',
+        eyebrow: 'ዶ/ር አዲ ላቪ · የቤተሰብ ህክምና',
         lede: 'ከቤትዎ እስከ ክሊኒኩ በር ድረስ አጭር መመሪያ — አቅጣጫን እና በህንፃው ውስጥ ደረጃ በደረጃ መጓዝን ጨምሮ።',
         flowH2: 'ወደ እኛ እንዴት እንደሚደርሱ',
         flowSub: 'ከመግቢያዎ እስከ ክሊኒኩ በር ደረጃ በደረጃ መመሪያ',
@@ -1048,7 +1080,7 @@
         receptionAlt: 'የክሊኒክ አቀባበል ጠረጴዛ',
         phoneLabel: 'እኛን ማግኘት አልቻሉም?',
         phoneNote: 'በደስታ እንመልስልዎታለን እና እንመራዎታለን።',
-        footer: 'Demo Clinic — Clinic Navigation Template',
+        footer: 'ላቪ ክሊኒክ',
         lightboxClose: 'ዝጋ'
       },
       routes: {
@@ -1059,9 +1091,10 @@
     },
     ti: {
       t: {
-        pageTitle: 'ናባና ብኸመይ ይብጻሕ — Demo',
-        doctorAlt: 'ናሙና ክሊኒክ',
-        eyebrow: 'ናሙና ክሊኒክ',
+        pageTitle: 'ናባና ብኸመይ ይብጻሕ — ላቪ ክሊኒክ',
+        doctorAlt: 'ዶ/ር ኣዲ ላቪ',
+        clinicName: 'ላቪ ክሊኒክ',
+        eyebrow: 'ዶ/ር ኣዲ ላቪ · ስድራ ሕክምና',
         lede: 'ካብ ገዛኹም ክሳብ ማዕጾ ክሊኒክ ሓጺር መምርሒ — መገዲ ምምራሕን ኣብ ውሽጢ ህንጻ ስጉምቲ ብስጉምቲ ምዝዋርን ዝሓቖፈ።',
         flowH2: 'ናባና ብኸመይ ይብጻሕ',
         flowSub: 'ካብ መእተዊኹም ክሳብ ማዕጾ ክሊኒክ ስጉምቲ ብስጉምቲ መምርሒ',
@@ -1106,7 +1139,7 @@
         receptionAlt: 'ጣውላ መቀበሊ ክሊኒክ',
         phoneLabel: 'ክትረኽቡና ኣይከኣልኩምን ድዩ?',
         phoneNote: 'ብሓጎስ ክንምልሰልኩምን ክንመርሓኩምን ኢና።',
-        footer: 'Demo Clinic — Clinic Navigation Template',
+        footer: 'ላቪ ክሊኒክ',
         lightboxClose: 'ዕጸው'
       },
       routes: {
@@ -1117,9 +1150,10 @@
     },
     fr: {
       t: {
-        pageTitle: "Comment nous rejoindre — Demo",
-        doctorAlt: 'Clinique Demo',
-        eyebrow: 'Clinique Demo',
+        pageTitle: "Comment nous rejoindre — Clinique Lavi",
+        doctorAlt: 'Dr Adi Lavi',
+        clinicName: 'Clinique Lavi',
+        eyebrow: 'Dr Adi Lavi · Médecine familiale',
         lede: "Un guide rapide de chez vous jusqu'à la porte de la clinique — itinéraire compris, et la marche à l'intérieur du bâtiment étape par étape.",
         flowH2: 'Comment nous rejoindre',
         flowSub: "Guide étape par étape de votre entrée jusqu'à la porte de la clinique",
@@ -1164,7 +1198,7 @@
         receptionAlt: 'Accueil de la clinique',
         phoneLabel: 'Vous ne nous trouvez pas ?',
         phoneNote: 'Nous répondrons avec plaisir et vous guiderons.',
-        footer: 'Demo Clinic — Clinic Navigation Template',
+        footer: 'Clinique Lavi',
         lightboxClose: 'Fermer'
       },
       routes: {
