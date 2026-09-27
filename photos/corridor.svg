@@ -1,8 +1,14 @@
 <svg viewBox="0 0 320 240" xmlns="http://www.w3.org/2000/svg">
-  <rect width="320" height="240" fill="#DDE3DC"/>
-  <circle cx="160" cy="102" r="62" fill="#c8d0c6"/>
-  <g stroke="#596457" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M100 160 150 80 170 80 220 160Z"/><line x1="120" y1="160" x2="145" y2="92"/><line x1="200" y1="160" x2="175" y2="92"/>
-  </g>
-  <text x="160" y="200" font-family="Arial, sans-serif" font-size="15" font-weight="600" fill="#252421" text-anchor="middle">Corridor — Floor 5</text>
+  <rect width="320" height="240" fill="#EFEAE0"/>
+  <path d="M0 0 H320 L200 90 H120Z" fill="#F7F3EA"/>
+  <g fill="#FFF9E6"><path d="M130 14 H190 L184 22 H136Z"/><path d="M145 50 H175 L172 56 H148Z"/><path d="M151 72 H169 L167 76 H153Z"/></g>
+  <path d="M0 0 L120 90 V150 L0 240Z" fill="#E4DCCB"/><path d="M320 0 L200 90 V150 L320 240Z" fill="#DDD5C6"/>
+  <rect x="120" y="90" width="80" height="60" fill="#E8E1D3"/>
+  <rect x="146" y="100" width="28" height="50" fill="#8C7A5E"/><circle cx="168" cy="126" r="1.8" fill="#E4A94A"/>
+  <path d="M0 240 L120 150 H200 L320 240Z" fill="#B9B2A4"/>
+  <g stroke="#A59E90" stroke-width="1.5"><line x1="60" y1="195" x2="260" y2="195"/><line x1="95" y1="169" x2="225" y2="169"/></g>
+  <g fill="#9C8466"><path d="M96 84 L110 90 V156 L96 164Z"/></g>
+  <g fill="#9C8466"><path d="M270 60 L240 74 V184 L270 206Z"/></g>
+  <text x="22" y="150" font-family="Arial, sans-serif" font-size="96" font-weight="800" fill="#3F8F4F" transform="matrix(1 -0.75 0 1 0 0) translate(0 50)">5</text>
+  <path d="M240 212 L160 172" stroke="#3F6B4F" stroke-width="4" stroke-dasharray="8 7" stroke-linecap="round" opacity=".6"/>
 </svg>
