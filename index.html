@@ -4,6 +4,14 @@
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="robots" content="noindex, nofollow">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-K59Y30RLRB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  gtag('js', new Date());
+  gtag('config', 'G-K59Y30RLRB');
+</script>
 <meta property="og:title" content="מרפאת לביא — איך מגיעים אלינו">
 <meta property="og:description" content="דוגמה חיה: מדריך קצר מהבית עד לדלת המרפאה, כולל ניווט וההליכה בתוך הבניין צעד־צעד.">
 <meta property="og:image" content="https://shwartzadam.github.io/clinic-navigation-demo/photos/logo-placeholder.svg">
@@ -1270,6 +1278,7 @@
     btn.addEventListener('click', () => {
       if (!ROUTES_META[btn.dataset.route]) return;
       currentRouteKey = btn.dataset.route;
+      gtag('event', 'route_select', { route: currentRouteKey });
       applyRoute(getRoute(currentRouteKey));
       routeButtons.forEach(b => {
         const active = b === btn;
@@ -1314,11 +1323,13 @@
 
   langBtn.addEventListener('click', () => {
     const opening = langMenu.hidden;
+    if (opening) gtag('event', 'language_menu_open');
     langMenu.hidden = !opening;
     langBtn.setAttribute('aria-expanded', String(opening));
   });
   langMenuButtons.forEach(btn => {
     btn.addEventListener('click', () => {
+      gtag('event', 'language_select', { language: btn.dataset.lang, previous_language: currentLang });
       applyLanguage(btn.dataset.lang);
       langMenu.hidden = true;
       langBtn.setAttribute('aria-expanded', 'false');
@@ -1339,6 +1350,7 @@
   const flow = document.getElementById('flow');
   flowTrigger.addEventListener('click', async () => {
     const opening = flow.hidden;
+    gtag('event', opening ? 'guide_open' : 'guide_close');
     if (opening) {
       flow.hidden = false;
       flowTrigger.classList.add('is-open');
@@ -1360,6 +1372,7 @@
   const lightboxClose = document.getElementById('lightbox-close');
 
   function openLightbox(src, alt){
+    gtag('event', 'photo_open', { photo: src.split('/').pop(), route: currentRouteKey });
     lightboxImg.src = src;
     lightboxImg.alt = alt;
     lightbox.hidden = false;
@@ -1389,6 +1402,18 @@
     });
   });
   lightboxClose.addEventListener('click', closeLightbox);
+
+  // Navigation (Waze / Google Maps) and phone links — one delegated listener instead of one per link.
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href]');
+    if (!a) return;
+    const href = a.href;
+    const app = href.startsWith('tel:') ? 'phone' : href.includes('waze.com') ? 'waze' : href.includes('google.com/maps') ? 'google_maps' : null;
+    if (!app) return;
+    gtag('event', app === 'phone' ? 'phone_click' : 'navigate_click', {
+      app, destination: a.closest('.parking-item') ? 'parking' : 'clinic', language: currentLang
+    });
+  });
   lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
   window.addEventListener('popstate', () => {
