@@ -331,6 +331,15 @@
   .flow-btn:active{transform:translateY(1px);}
   .flow-btn.is-open svg{transform:rotate(180deg);}
   .flow-btn svg{transition:transform .2s ease;}
+  /* Shake every 3s, starting 2s after load, until first click removes .nudge. */
+  @media (prefers-reduced-motion: no-preference){
+    .flow-btn.nudge{animation:nudge 3s ease-in-out 2s infinite;}
+    @keyframes nudge{
+      0%, 20%, 100%{transform:translateX(0);}
+      4%, 12%{transform:translateX(-6px) rotate(-2deg);}
+      8%, 16%{transform:translateX(6px) rotate(2deg);}
+    }
+  }
   .flow-cta-sub{
     margin:0;
     font-size:13px;
@@ -588,7 +597,7 @@
   <section class="flow-cta">
     <h2 data-i18n="flowH2">איך מגיעים אלינו</h2>
     <p class="flow-cta-sub" data-i18n="flowSub">מדריך צעד־צעד מהכניסה שלכם עד דלת המרפאה</p>
-    <button type="button" id="flow-trigger" class="flow-btn">
+    <button type="button" id="flow-trigger" class="flow-btn nudge">
       <span data-i18n="flowBtn">הציגו את המדריך</span>
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <path d="M12 5v14M12 19l-6-6M12 19l6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1349,6 +1358,7 @@
   const flowTrigger = document.getElementById('flow-trigger');
   const flow = document.getElementById('flow');
   flowTrigger.addEventListener('click', async () => {
+    flowTrigger.classList.remove('nudge');
     const opening = flow.hidden;
     gtag('event', opening ? 'guide_open' : 'guide_close');
     if (opening) {
